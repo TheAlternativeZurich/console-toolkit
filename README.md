@@ -11,3 +11,38 @@ useful terminal applications designed to simplify your workflow. Furthermore,
 you may directly solidify the abilities you learn by solving short exercises.
 
 This way, you will feel comfortable with using the console in no time!
+
+# Contents
+
+Brainstorming of previous content
+
+- why console
+- course goals
+- opening console
+- commands & arguments
+- arguments with spaces
+- options
+- manual
+- cmd history (arrows, search)
+- globs, wildcards
+- ctrl-c
+- file system navigation
+- cd
+- pwd
+- .. (the directory location)
+- tab completion
+- ls
+- fs layout (man hier)
+- text editing
+- less
+- cat
+- cp
+- mv rm
+- mkdir, rmdir
+- search path
+- users: sudo, su
+- software installation
+- creating boot sticks (dd, sync)
+- disk space
+- scripting
+- ssh
