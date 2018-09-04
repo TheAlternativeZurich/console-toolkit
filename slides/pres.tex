@@ -46,7 +46,7 @@
         \end{columns}
     \end{frame}
 
-    \section{File system navigation}
+    \section{Navigation}
 
     \begin{frame}[t,fragile]{The 70s were interesting times, or so I'm told}
         \textbf{Unix dogma: \emph{Everything is a file!}} \\
@@ -86,11 +86,11 @@
                     \emph{this user's home directory} (abbreviation)
             \end{itemize}
             \column{0.5\textwidth}
-            \begin{bashcmd}
+            \begin{bashenv}[\small]
 [luke@host ~]$ pwd
 /home/luke
 [luke@host ~]$
-            \end{bashcmd}
+            \end{bashenv}
         \end{columns}
     \end{frame}
 
@@ -99,10 +99,10 @@
             \column{0.5\textwidth}
             \begin{itemize}
                 \item What is in here? \textrightarrow \: \texttt{ls}
-                \item ``list''
+                \item \emph{list}
             \end{itemize}
             \column{0.5\textwidth}
-            \begin{bashcmd}
+            \begin{bashenv}[\small]
 [luke@host ~]$ ls
 §\textcolor{dirblue}{Desktop}§
 §\textcolor{dirblue}{Documents}§
@@ -113,38 +113,7 @@
 cat1.jpg
 cat2.jpg
 [luke@host ~]$
-            \end{bashcmd}
-        \end{columns}
-    \end{frame}
-
-    \section{Meta}
-
-    \begin{frame}[t,fragile]{Go somewhere else}
-        \begin{columns}[T]
-            \column{0.5\textwidth}
-            \begin{itemize}
-                \item I want to go to some other directory! \textrightarrow \: \texttt{cd}
-                \item ``Change directory''
-                \item Absolute path: Whole path from the root, like:
-                    \texttt{/home/luke/pictures/cat1.png}
-                \item Relative path: Path relative to the current working
-                    directory, like \texttt{pictures/cat1.png}
-            \end{itemize}
-            \column{0.5\textwidth}
-            \begin{bashcmd}
-[luke@host ~]$ cd
-[luke@host ~]$ pwd
-/home/luke
-[luke@host ~]$ cd /sys
-[luke@host sys]$ pwd
-/sys
-[luke@host sys]$ cd ~
-[luke@host ~]$ pwd
-/home/luke
-[luke@host ~]$ cd pictures/
-[luke@host pictures]$ pwd
-/home/luke/pictures
-            \end{bashcmd}
+            \end{bashenv}
         \end{columns}
     \end{frame}
 
@@ -176,6 +145,41 @@ cat2.jpg
         \end{tikzpicture}
     \end{frame}
 
+    \begin{frame}[t,fragile]{Advanced listing}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{ls} has advanced options
+                \item \texttt{-a}: show hidden files
+                \item \texttt{-h}: print numbers in human readable format
+                \item \texttt{-l}: show the long output format.
+                \item \texttt{ls -lah} and \texttt{ls -l -a -h} are
+                    equivalent
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\tiny]
+[luke@arch-x270 ~]$ ls -lah
+total 52K
+drwx------ 8 luke luke 4.0K Sep  3 23:27 .
+drwxr-xr-x 4 root root 4.0K Sep  3 23:26 ..
+-rw-r--r-- 1 luke luke   21 Jun  4 10:54 .bash_logout
+-rw-r--r-- 1 luke luke   57 Jun  4 10:54 .bash_profile
+-rw-r--r-- 1 luke luke  141 Jun  4 10:54 .bashrc
+-rw-r--r-- 1 luke luke    0 Sep  3 23:27 cat1.jpg
+-rw-r--r-- 1 luke luke    0 Sep  3 23:27 cat2.jpg
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Desktop}§
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Documents}§
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Downloads}§
+-rw-r--r-- 1 luke luke   24 Sep  3 23:28 .hidden_file
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Music}§
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Pictures}§
+-rw-r--r-- 1 luke luke 3.7K Oct 23  2017 .screenrc
+drwxr-xr-x 2 luke luke 4.0K Sep  3 23:27 §\textcolor{dirblue}{Videos}§
+[luke@arch-x270 ~]$
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
     \begin{frame}[t,fragile]{Getting help}
         \begin{itemize}
             \item Where can I find out what options are available?
@@ -186,8 +190,8 @@ cat2.jpg
     \end{frame}
 
     \begin{frame}[t,fragile]{}
-        \begin{bashcmd}
-LS(1)                      User Commands                     LS(1)
+        \begin{bashenv}[\tiny]
+LS(1)                                        User Commands                                       LS(1)
 
 NAME
        ls - list directory contents
@@ -196,17 +200,11 @@ SYNOPSIS
        ls [OPTION]... [FILE]...
 
 DESCRIPTION
-       List information about the FILEs (the current directory by
-       default). Sort entries alphabetically if none of -cftuvSUX
-       nor --sort is specified.
+       List  information  about the FILEs (the current directory by default).  Sort entries alphabeti-
+       cally if none of -cftuvSUX nor --sort is specified.
 
-       Mandatory arguments to long options are mandatory for short
-       options too.
-                \end{bashcmd}
-    \end{frame}
+       Mandatory arguments to long options are mandatory for short options too.
 
-    \begin{frame}[t,fragile]{}
-                \begin{bashcmd}
        -a, --all
               do not ignore entries starting with .
 
@@ -218,12 +216,107 @@ DESCRIPTION
 
        -b, --escape
               print C-style escapes for nongraphic characters
-
-       --block-size=SIZE
-              with -l, scale sizes by SIZE when printing them; e.g.,
-              '--block-size=M'; see SIZE format below
-        \end{bashcmd}
+        \end{bashenv}
     \end{frame}
+
+    \begin{frame}[t,fragile]{Go somewhere else}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item I want to go to some other directory! \textrightarrow \: \texttt{cd}
+                \item ``Change directory''
+                \item Absolute path: Whole path from the root, like:
+                    \texttt{/home/luke/pictures/cat1.png}
+                \item Relative path: Path relative to the current working
+                    directory, like \texttt{pictures/cat1.png}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ cd
+[luke@host ~]$ pwd
+/home/luke
+[luke@host ~]$ cd /sys
+[luke@host sys]$ pwd
+/sys
+[luke@host sys]$ cd ~
+[luke@host ~]$ pwd
+/home/luke
+[luke@host ~]$ cd pictures/
+[luke@host pictures]$ pwd
+/home/luke/pictures
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \section{Modifiying files}
+
+    \begin{frame}[t,fragile]{Copying files}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+                \begin{itemize}
+                    \item Copy command: \texttt{cp}
+                    \item Syntax: \texttt{cp source destination}
+                \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ cp diary diary_copy
+[luke@host ~]$ cat diary_copy
+Dear diary, today I downloaded
+cat pictures from the internet.
+[luke@host ~]$
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Moving files}
+        \begin{columns}[T]
+            \column{0.47\textwidth}
+                \begin{itemize}
+                    \item Move command: \texttt{mv}
+                    \item Syntax: \texttt{mv source destination}
+                    \item Useful to rename files
+                \end{itemize}
+            \column{0.53\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ mv diary secret_diary
+[luke@host ~]$ cat secret_diary
+Dear diary, today I downloaded
+cat pictures from the internet.
+[luke@host ~]$
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \section{Text files}
+
+    \begin{frame}[t,fragile]{Showing text files}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Output a file's contents to the console with
+                    \texttt{cat}
+                \item Used to stand for \emph{concatenate}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ cat diary
+Dear diary, today I downloaded
+cat pictures from the internet.
+[luke@host ~]$
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Reading long files}
+        \begin{itemize}
+            \item What if the text doesn't fit on the terminal?
+            \item Use the \texttt{less} file browser
+            \item Scroll up and down with \keys{\arrowkeyup}, \keys{\arrowkeydown}
+            \item Exit with \keys{q}
+        \end{itemize}
+    \end{frame}
+
+    \section{Meta}
 
     \begin{frame}[t,fragile]{Tab completion}
         \begin{itemize}
@@ -242,70 +335,78 @@ DESCRIPTION
         \end{itemize}
     \end{frame}
 
-    \section{Text files}
+    \section{PATH}
+    \section{Users \& rights}
+    \section{Installing software}
 
-    \begin{frame}[t,fragile]{Showing text files}
+    \section{SSH}
+
+    \begin{frame}[t,fragile]{SSH}
         \begin{columns}[T]
             \column{0.5\textwidth}
             \begin{itemize}
-                \item Output a file's contents to the console with
-                    \texttt{cat}
-                \item Used to stand for ``concatenate''
+                \item \emph{Secure shell}
+                \item SSH allows to login to another computer over the network
+                \item Servers administration, running jobs on supercomputers,
+                    login to your computer at home
             \end{itemize}
             \column{0.5\textwidth}
-            \begin{bashcmd}
-[luke@host ~]$ cat diary
-Dear diary, today I downloaded
-cat pictures from the internet.
-[luke@host ~]$
-            \end{bashcmd}
+            \begin{center}
+                \includegraphics[width=0.6\columnwidth]{img/ssh.png}
+            \end{center}
         \end{columns}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Reading long files}
-        \begin{itemize}
-            \item What if the text doesn't fit on the terminal?
-            \item Use the \texttt{less} file browser
-            \item Scroll up and down with \keys{\arrowkeyup}, \keys{\arrowkeydown}
-            \item Exit with \keys{q}
-        \end{itemize}
+    \begin{frame}[t,fragile]{Logging in to Euler (cluster)}
+        \begin{bashenv}[\tiny]
+[luke@host ~]$ ssh lutobler@euler.ethz.ch
+Last login: Tue Sep  4 00:06:01 2018 from vpn-global-125-dhcp.ethz.ch
+
+      ____________________   ___
+     /  ________   ___   /__/  /
+    /  _____/  /  /  /  ___   /
+   /_______/  /__/  /__/  /__/
+   Eidgenoessische Technische Hochschule Zuerich
+   Swiss Federal Institute of Technology Zurich
+   -------------------------------------------------------------------------
+                                        E U L E R  C L U S T E R
+
+
+                                                     https://scicomp.ethz.ch
+                                          http://tinyurl.com/cluster-support
+                                                  cluster-support@id.ethz.ch
+
+   =========================================================================
+        \end{bashenv}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Copying files}
+    \begin{frame}[t,fragile]{Using SSH}
         \begin{columns}[T]
             \column{0.5\textwidth}
-                \begin{itemize}
-                    \item Copy command: \texttt{cp}
-                    \item Syntax: \texttt{cp source destination}
-                \end{itemize}
+            \begin{itemize}
+                \item \texttt{ssh alice@bob.ch}
+                \item Will ask for user password
+            \end{itemize}
             \column{0.5\textwidth}
-            \begin{bashcmd}
-[luke@host ~]$ cp diary diary_copy
-[luke@host ~]$ cat diary_copy
-Dear diary, today I downloaded
-cat pictures from the internet.
-[luke@host ~]$
-            \end{bashcmd}
+            \begin{bashenv}[\small]
+[luke@host ~]$ ssh alice@bob.ch
+alice@bob.ch's password:
+[alice@bob ~]$
+            \end{bashenv}
         \end{columns}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Moving files}
-        \begin{columns}[T]
-            \column{0.47\textwidth}
-                \begin{itemize}
-                    \item Move command: \texttt{mv}
-                    \item Syntax: \texttt{mv source destination}
-                    \item Useful to rename files
-                \end{itemize}
-            \column{0.53\textwidth}
-            \begin{bashcmd}
-[luke@host ~]$ mv diary secret_diary
-[luke@host ~]$ cat secret_diary
-Dear diary, today I downloaded
-cat pictures from the internet.
-[luke@host ~]$
-            \end{bashcmd}
-        \end{columns}
+    \begin{frame}[t,fragile]{Login without password}
+        \vspace{0.5cm}
+        Generate an SSH key with \texttt{ssh-keygen} and copy the
+        key in \texttt{\textasciitilde/.ssh/id\_rsa.pub} to
+        \texttt{\textasciitilde/.ssh/authorized\_keys} on the server.\\
+        \vspace{0.5cm}
+        Neat key copying trick when password login already works:
+        \vspace{0.2cm}
+        \begin{bashenv}[\scriptsize]
+cat ~/.ssh/id_rsa.pub | ssh username@euler.ethz.ch 'cat - >> .ssh/authorized_keys'
+        \end{bashenv}
     \end{frame}
 
     % \begin{frame}[t,fragile]{INSERT TITLE}

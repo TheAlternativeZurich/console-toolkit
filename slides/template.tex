@@ -53,16 +53,16 @@
 \setbeamertemplate{bibliography item}[text]
 
 % white-on-black lstlisting env with rounded corners on the black box
-\newenvironment{bashcmd}{%
+\newenvironment{bashenv}[1][\small]{%
     \tcblisting{listing only,colback=black,colframe=black,
         enlarge top by=0mm,left=-0mm,top=-2mm,bottom=-2mm,
         listing options={language=bash,
             escapechar=§,
-            basicstyle=\ttfamily\small\color{white},
+            basicstyle=#1\color{white}\ttfamily,
             backgroundcolor=\color{black},
             breaklines=true,
             keepspaces=true,
-            columns=fullflexible,},}}
+            columns=fullflexible}}}
 {\endtcblisting}
 
 % mark a spot for e.g. drawing arrow to it
