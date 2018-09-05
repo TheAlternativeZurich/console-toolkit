@@ -27,6 +27,11 @@
         \begin{columns}
             \column{0.5\textwidth}
             \textbf{Part 1}
+            \begin{itemize}
+                \item Navigating the file system
+                \item Modifiying files
+                \item Working with text files
+            \end{itemize}
             \column{0.5\textwidth}
             \textbf{Part 2}
         \end{columns}
@@ -141,7 +146,6 @@ cat2.jpg
             fill=orange!40,draw=orange!70!black] (b4)
             {\footnotesize{arguments}};
             \draw[orange!70!black,->] (b4) edge ([yshift=-0.05cm,xshift=1.7cm]d.south);
-
         \end{tikzpicture}
     \end{frame}
 
@@ -285,6 +289,48 @@ cat pictures from the internet.
 [luke@host ~]$
             \end{bashenv}
         \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Creating and deleting directories}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{mkdir} creates a new directory
+                \item \texttt{rmdir} removes a directory
+                \item \texttt{rmdir} only works for empty directories!
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ mkdir new_dir
+[luke@host ~]$ ls
+§\textcolor{dirblue}{new\_dir}§
+[luke@host ~]$ rmdir new_dir
+[luke@host ~]$ ls
+[luke@host ~]$
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Deleting files}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{rm} removes files and directories
+                \item \texttt{rm -r} removes a directory and everything in it
+                    \emph{(recurisive)}
+                \item \texttt{rm} is \textcolor{red}{irreversible!}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ ls
+cat1.jpg
+cat2.jpg
+[luke@host ~]$ rm cat1.jpg
+[luke@host ~]$ ls
+cat2.jpg
+            \end{bashenv}
+        \end{columns}
+        \Warning
     \end{frame}
 
     \section{Text files}
