@@ -228,7 +228,7 @@ DESCRIPTION
             \column{0.5\textwidth}
             \begin{itemize}
                 \item I want to go to some other directory! \textrightarrow \: \texttt{cd}
-                \item ``Change directory''
+                \item \emph{Change directory}
                 \item Absolute path: Whole path from the root, like:
                     \texttt{/home/luke/pictures/cat1.png}
                 \item Relative path: Path relative to the current working
@@ -330,7 +330,12 @@ cat2.jpg
 cat2.jpg
             \end{bashenv}
         \end{columns}
-        \Warning
+        \vspace{0.7cm}
+        \begin{WarningBox}
+            \texttt{rm} is a shotgun without safety! There is no trashcan.
+            You can delete your entire file system with \texttt{sudo rm -rf /},
+            or your entire home directory with \texttt{rm -rf \textasciitilde}\:!%
+        \end{WarningBox}
     \end{frame}
 
     \section{Text files}
@@ -356,10 +361,71 @@ cat pictures from the internet.
     \begin{frame}[t,fragile]{Reading long files}
         \begin{itemize}
             \item What if the text doesn't fit on the terminal?
-            \item Use the \texttt{less} file browser
+            \item Use the \texttt{less} file viewer
             \item Scroll up and down with \keys{\arrowkeyup}, \keys{\arrowkeydown}
             \item Exit with \keys{q}
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Editing files}
+        \begin{itemize}
+            \item Need a \emph{text editor}!
+            \item \emph{nano, vim, vis, (emacs)}
+            \item Simple, intuitive, no learning required? \textrightarrow\:\texttt{nano}
+            \item Powerful, efficient and extereme nerd cred? \textrightarrow\:\texttt{vim}
+            \item Obscure, eccentric and even more powerful? \textrightarrow\:\texttt{emacs}
+            \item Has some advantages to using a big GUI tool
+                \begin{itemize}
+                    \item Navigation and editing in the same interface
+                    \item Quick and efficient
+                    \item Very powerful tools available
+                    \item You talk down on people using Notepad++
+                \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Nano}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Syntax: \texttt{nano [filename]}
+                \item Key bindings shown on the bottom
+                \item Save: \keys{\ctrl} + \keys{o}
+                \item Save: \keys{\ctrl} + \keys{x}
+                \item Navigate with arrow keys \keys{\arrowkeyleft}
+                    \keys{\arrowkeydown} \keys{\arrowkeyup}
+                    \keys{\arrowkeyright}
+                \item \texttt{\textasciicircum} stands for the \keys{\ctrl} key (universal)
+            \end{itemize}
+            \column{0.5\textwidth}
+        \begin{bashenv}[\scriptsize]
+[luke@host ~]$ nano diary.txt
+        \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{}
+        \begin{bashenv}[\scriptsize]
+~                                                                                       
+~                                  VIM - Vi IMproved                                    
+~                                                                                       
+~                                   version 8.1.333                                     
+~                               by Bram Moolenaar et al.                                
+~                     Vim is open source and freely distributable                       
+~                                                                                       
+~                            Become a registered Vim user!                              
+~                    type  :help register<Enter>   for information                      
+~                                                                                       
+~                    type  :q<Enter>               to exit                              
+~                    type  :help<Enter>  or  <F1>  for on-line help                     
+~                    type  :help version8<Enter>   for version info                     
+~                                                                                       
+~                            Running in Vi compatible mode                              
+~                    type  :set nocp<Enter>        for Vim defaults                     
+~                    type  :help cp-default<Enter> for info on this                     
+~                                                                                       
+~                                                                                       
+        \end{bashenv}
     \end{frame}
 
     \section{Meta}
@@ -383,7 +449,97 @@ cat pictures from the internet.
 
     \section{PATH}
     \section{Users \& rights}
-    \section{Installing software}
+
+    \section{Managing software}
+
+    \begin{frame}[t,fragile]{How you get software on Linux}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Don't download installers from the internet!
+                \item Software is managed by the distribution and available
+                    through a central repository.
+                \item Software is \emph{packaged}
+                \item Similiar to Microsoft's or Apple's app stores
+            \end{itemize}
+            \column{0.5\textwidth}
+            \vspace{-1cm}
+            \begin{center}
+                \includegraphics[width=0.7\columnwidth]{img/package-icon.pdf}
+            \end{center}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Installing packages}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Depends on distribution!
+                \item Packages manager is most important feature of a
+                    Linux distribution
+            \end{itemize}
+            \column{0.5\textwidth}
+            Debian, Ubuntu, Mint:
+            \begin{bashenv}[\small]
+sudo apt install firefox
+            \end{bashenv}
+            OpenSUSE:
+            \begin{bashenv}[\small]
+sudo zypper install firefox
+            \end{bashenv}
+            RedHat, Fedora:
+            \begin{bashenv}[\small]
+sudo dnf install firefox
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Searching for packages}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            Debian, Ubuntu, Mint:
+            \begin{bashenv}[\small]
+apt search firefox
+            \end{bashenv}
+            OpenSUSE:
+            \begin{bashenv}[\small]
+zypper search firefox
+            \end{bashenv}
+            RedHat, Fedora:
+            \begin{bashenv}[\small]
+dnf search firefox
+            \end{bashenv}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item The basic package search is usually quite limited
+                \item Consult the internet for finding the right programs!
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Updating packages}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item All packages can be upgraded at once
+                \item Do this every other week!
+            \end{itemize}
+            \column{0.5\textwidth}
+            Debian, Ubuntu, Mint:
+            \begin{bashenv}[\small]
+sudo apt update
+sudo apt upgrade
+            \end{bashenv}
+            OpenSUSE:
+            \begin{bashenv}[\small]
+sudo zypper update
+            \end{bashenv}
+            RedHat, Fedora:
+            \begin{bashenv}[\small]
+sudo dnf update
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
 
     \section{SSH}
 

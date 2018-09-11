@@ -9,33 +9,19 @@
 \usepackage{tikz}
 \usepackage{tcolorbox}
 \usepackage{menukeys}
-
-\newcommand\Warning{%
-    \makebox[1.4em][c]{%
-    \makebox[0pt][c]{\raisebox{.1em}{\small!}}%
-    \makebox[0pt][c]{\color{red}\Large$\bigtriangleup$}}}%
+\usepackage{pdfpages}
 
 \tcbuselibrary{listings}
 
 \usefonttheme[onlymath]{serif}
-\setcounter{MaxMatrixCols}{20}
 
 \usecolortheme[RGB={37,68,113}]{structure}
 \usetheme{Dresden}
 
-%Define generic colors
-\definecolor{slg}{gray}{0.25}
-\definecolor{lg}{gray}{0.55}
-\definecolor{vlg}{gray}{0.73}
-\definecolor{tlg}{gray}{0.9}
+% generic colors
 \definecolor{dirblue}{HTML}{9bc1ff}
 
-%Define data colors
-\definecolor{mygreen}{rgb}{0,0.6,0}
-\definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
-
-%Define TheAlt colors
+% TheAlternative colors
 \definecolor{ldorange}{HTML}{F18A20}
 \definecolor{ldblue}{HTML}{254471}
 
@@ -51,13 +37,16 @@
 \setbeamertemplate{itemize item}[circle]
 \setbeamercolor{itemize item}{fg=ldorange}
 
+% make including pdfs work
+\setbeamercolor{background canvas}{bg=}
+
 \setbeamerfont{title}{series=\bfseries}
 
 \setbeamertemplate{caption}{\raggedright\insertcaption\par}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{bibliography item}[text]
 
-% white-on-black lstlisting env with rounded corners on the black box
+% white-on-black lstlisting env with rounded corners
 \newenvironment{bashenv}[1][\small]{%
     \tcblisting{listing only,colback=black,colframe=black,
         enlarge top by=0mm,left=-0mm,top=-2mm,bottom=-2mm,
@@ -67,9 +56,23 @@
             backgroundcolor=\color{black},
             breaklines=true,
             keepspaces=true,
+            showstringspaces=false,
             columns=fullflexible}}}
 {\endtcblisting}
 
-% mark a spot for e.g. drawing arrow to it
+% mark a spot for e.g. drawing an arrow to it
 \newcommand\tikzmark[1]{\tikz[remember picture,overlay]\node[inner xsep=0pt](#1){};}
+
+% \newcommand\Warning{%
+%     \makebox[1.4em][c]{\raisebox{-0.45em}{%
+%         \makebox[0pt][c]{\raisebox{0.25em}{\large!}}%
+%         \makebox[0pt][c]{\color{red}\Huge$\bigtriangleup$}}}%
+%         \hspace{0.7em}%
+% }
+
+% a red warning box
+\definecolor{lred}{HTML}{ffd6dd}
+\newtcolorbox{WarningBox}{%
+    colframe=red,
+    colback=lred}
 
