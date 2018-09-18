@@ -87,8 +87,6 @@
                 \item Where am I? \textrightarrow \: \texttt{pwd}
                 \item \underline{P}resent \underline{w}orking \underline{d}irectory
                 \item Also sometimes directly shown in the prompt
-                \item The tilde \texttt{\textasciitilde} means:
-                    \emph{this user's home directory} (abbreviation)
             \end{itemize}
             \column{0.5\textwidth}
             \begin{bashenv}[\small]
@@ -250,6 +248,18 @@ DESCRIPTION
 /home/luke/pictures
             \end{bashenv}
         \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Special places}
+        \begin{itemize}
+            \item{\makebox[1.3cm]{\texttt{\textasciitilde\hfill}}User's home directory}
+            \item{\makebox[1.3cm]{\texttt{. }\hfill}The current directory}
+            \item{\makebox[1.3cm]{\texttt{..}\hfill}The directory above in the tree}
+        \end{itemize}
+        % \begin{columns}[T]
+        %     \column{0.5\textwidth}
+        %     \column{0.5\textwidth}
+        % \end{columns}
     \end{frame}
 
     \section{Modifiying files}
@@ -447,6 +457,13 @@ cat pictures from the internet.
         \end{itemize}
     \end{frame}
 
+    \begin{frame}[t,fragile]{Killing a running process}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \column{0.5\textwidth}
+        \end{columns}
+    \end{frame}
+
     \section{PATH}
     \section{Users \& rights}
 
@@ -609,6 +626,15 @@ alice@bob.ch's password:
         \begin{bashenv}[\scriptsize]
 cat ~/.ssh/id_rsa.pub | ssh username@euler.ethz.ch 'cat - >> .ssh/authorized_keys'
         \end{bashenv}
+    \end{frame}
+
+    \section{Sources}
+
+    \begin{frame}[t,fragile]{Sources}
+        \begin{itemize}
+            \item Img 1
+            \item Img 2
+        \end{itemize}
     \end{frame}
 
     % \begin{frame}[t,fragile]{INSERT TITLE}
