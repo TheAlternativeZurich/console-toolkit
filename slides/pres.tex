@@ -508,7 +508,7 @@ PID TTY        TIME CMD
             \column{0.5\textwidth}
             \begin{itemize}
                 \item Depends on distribution!
-                \item Packages manager is most important feature of a
+                \item Package Manager is most important feature of a
                     Linux distribution
             \end{itemize}
             \column{0.5\textwidth}
@@ -574,6 +574,27 @@ sudo dnf update
         \end{columns}
     \end{frame}
 
+
+    \begin{frame}[t,fragile]{Github}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+		    \item www.github.com has a \emph{lot} of software
+		    \item All open source
+		    \item This is just like software you download under Windows, so be careful!
+		    \item If you find something you're interested in: \texttt{git clone link}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\tiny]
+[luke@host ~]$ git clone https://github.com/lampepfl/dotty.g8
+Cloning into 'dotty.g8'...
+done.
+[luke@host ~]$ ls
+§\textcolor{dirblue}{dotty.g8}§
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
     \section{SSH}
 
     \begin{frame}[t,fragile]{SSH}
@@ -581,9 +602,9 @@ sudo dnf update
             \column{0.5\textwidth}
             \begin{itemize}
                 \item \emph{Secure shell}
-                \item SSH allows to login to another computer over the network
-                \item Servers administration, running jobs on supercomputers,
-                    login to your computer at home
+                \item SSH allows to log in to another computer over the network
+                \item Server administration, running jobs on supercomputers,
+                    log in to your computer at home
             \end{itemize}
             \column{0.5\textwidth}
             \begin{center}
