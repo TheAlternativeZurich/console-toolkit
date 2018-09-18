@@ -382,7 +382,7 @@ cat pictures from the internet.
             \item Need a \emph{text editor}!
             \item \emph{nano, vim, vis, (emacs)}
             \item Simple, intuitive, no learning required? \textrightarrow\:\texttt{nano}
-            \item Powerful, efficient and extereme nerd cred? \textrightarrow\:\texttt{vim}
+            \item Powerful, efficient and extreme nerd cred? \textrightarrow\:\texttt{vim}
             \item Obscure, eccentric and even more powerful? \textrightarrow\:\texttt{emacs}
             \item Has some advantages to using a big GUI tool
                 \begin{itemize}
@@ -460,7 +460,23 @@ cat pictures from the internet.
     \begin{frame}[t,fragile]{Killing a running process}
         \begin{columns}[T]
             \column{0.5\textwidth}
+	    \begin{itemize}
+		    \item Every process has an ID an Linux. 
+		    \item View processes with \texttt{ps -e}.
+		    \item Kill a process with \texttt{kill id}.
+		    \item If ID is unknown, use \texttt{pkill name}.
+		    \item The \texttt{-9} flag works like a shotgun.
+	    \end{itemize}
             \column{0.5\textwidth}
+	    \begin{bashenv}[\small]
+[luke@host ~]$ ps -e
+PID TTY        TIME CMD
+1 ?        00:00:04 systemd
+2 ?        00:00:00 kthreadd
+[...]
+[luke@host ~]$ kill 16740
+[luke@host ~]$ pkill -9 emacs
+            \end{bashenv}
         \end{columns}
     \end{frame}
 
