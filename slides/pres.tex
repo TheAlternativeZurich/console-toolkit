@@ -481,6 +481,31 @@ PID TTY        TIME CMD
     \end{frame}
 
     \section{PATH}
+
+    \begin{frame}[t,fragile]{The PATH variable}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item How does the shell know where programs are?
+                \item The shell searches the \texttt{PATH} variable
+                \item \texttt{ls} \textrightarrow \: \texttt{/usr/bin/ls}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+[luke@host ~]$ echo $PATH
+/usr/sbin:/usr/bin
+            \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Adding your own paths}
+        \begin{itemize}
+            \item Let's say you want to add your script directory
+            \item Temporarily: \texttt{export PATH=\$PATH:\textasciitilde/scripts}
+            \item Permanently: Add the above to \texttt{\textasciitilde/.bashrc}
+        \end{itemize}
+    \end{frame}
+
     \section{Users \& rights}
 
     \section{Managing software}
