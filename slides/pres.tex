@@ -14,7 +14,7 @@
 
     \begin{frame}[t,fragile]{Why the console? It's already current year!}
         \begin{itemize}
-            \item People ask for it
+            \item People asked for it
             \item Still an excellent interface for complex tasks
             \item Many advanced tools only available on the command line
             \item Can be much faster than GUI tools
@@ -24,16 +24,25 @@
     \end{frame}
 
     \begin{frame}[t,fragile]{Course outline}
-        \begin{columns}
+        \begin{columns}[T]
             \column{0.5\textwidth}
             \textbf{Part 1}
             \begin{itemize}
                 \item Navigating the file system
                 \item Modifiying files
                 \item Working with text files
+                \item Getting used to the console
             \end{itemize}
             \column{0.5\textwidth}
             \textbf{Part 2}
+            \begin{itemize}
+                \item{Users \& rights}
+                \item{Managing software}
+                \item{SSH}
+                \item{Git}
+                \item{Backups}
+                \item{Scripting}
+            \end{itemize}
         \end{columns}
     \end{frame}
 
@@ -219,6 +228,17 @@ DESCRIPTION
        -b, --escape
               print C-style escapes for nongraphic characters
         \end{bashenv}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{More on manual pages}
+        \begin{itemize}
+            \item{Search by typing \keys{/}}
+            \item{Quit by typing \keys{q}}
+            \item{Sometimes there are multiple manuals! \textrightarrow \: Choose the right section}
+            \begin{itemize}
+                \item{\texttt{man 1 printf} vs. \texttt{man 3 printf}}
+            \end{itemize}
+        \end{itemize}
     \end{frame}
 
     \begin{frame}[t,fragile]{Go somewhere else}
@@ -540,6 +560,37 @@ youtube-dl -x "$1" -o "$filename"
 
     \section{Users \& rights}
 
+    \begin{frame}[t,fragile]{Users}
+        \begin{itemize}
+            \item{Linux is a \emph{multi-user operating system}}
+            \item{There can be many user accounts}
+            \item{Different users can even use the computer at the same time!}
+            \item{You usually only use your personal user account}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Users}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \textbf{Personal user}
+            \begin{itemize}
+                \item{Home directory in \texttt{/home/userx}}
+                \item{Can only access files in home directory}
+                \item{Can only stop processes started by itself}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \textbf{Root user}
+            \begin{itemize}
+                \item{Also \emph{called the superuser}}
+                \item{''System administrator``}
+                \item{Can do anything on the system}
+                \item{Access to all files}
+                \item{Can kill any process}
+                \item{Home directory in \texttt{/root}}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
     \section{Managing software}
 
     \begin{frame}[t,fragile]{How you get software on Linux}
@@ -645,7 +696,7 @@ sudo dnf update
             \column{0.5\textwidth}
             \begin{itemize}
                 \item Download the sources
-                \item Follow the build instructions (README file)
+                \item Follow the build instructions in the documentation
             \end{itemize}
             \column{0.5\textwidth}
             \begin{bashenv}[\small]
@@ -736,6 +787,83 @@ cat ~/.ssh/id_rsa.pub | ssh username@euler.ethz.ch 'cat - >> .ssh/authorized_key
         \end{bashenv}
     \end{frame}
 
+    \section{Version control}
+
+    \begin{frame}[fragile]{Git}
+        \begin{center}
+            \includegraphics[width=0.3\textwidth]{img/git_logo.png}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Git}
+        \begin{itemize}
+            \item{\texttt{thesis.pdf}}
+            \item{\texttt{thesis\_old.pdf}}
+            \item{\texttt{thesis\_copy.pdf}}
+            \item{\texttt{thesis\_finalversion.pdf}}
+            \item{\texttt{thesis\_finalversion2.pdf}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Git}
+        \emph{Git is a version-control system for tracking changes in computer files
+        and coordinating work on those files among multiple people.}
+        \hspace{10cm}--- Wikipedia
+    \end{frame}
+
+    \begin{frame}[fragile]{Git}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{img/git_branches.png}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Git}
+        \begin{itemize}
+            \item{Track changes to your code}
+            \item{Comment your changes}
+            \item{Easily revert back to older versions}
+            \item{Avoid/manage conflicts when working in teams}
+            \item{Manage release versions and development versions}
+            \item{Work on different branches at the same time}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Git example}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item{Initialize a git repository}
+                \item{Add files you want to include in a commit}
+                \item{Create a commit for your selected changes}
+                \item{Push changes to server}
+            \end{itemize}
+            \column{0.5\textwidth}
+        \begin{bashenv}[\small]
+git init
+        \end{bashenv}
+        \begin{bashenv}[\small]
+git add changed_file.txt
+        \end{bashenv}
+        \begin{bashenv}[\small]
+git commit
+        \end{bashenv}
+        \begin{bashenv}[\small]
+git push
+        \end{bashenv}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Sharing a repository}
+        \begin{itemize}
+            \item{You can use services like \emph{Github} or \emph{Gitlab} to collaborate
+                with others on your project}
+            \item{Or host your repositories yourself!}
+                \begin{itemize}
+                    \item{You can pull from/push to any server you can access via SSH}
+                \end{itemize}
+        \end{itemize}
+    \end{frame}
+
     \section{Backup}
     \begin{frame}[t, fragile]{Borg Backup}
 	    \begin{columns}[T]
@@ -774,7 +902,7 @@ Repeat passphrase:
 		    \vspace{0.5cm}
     \end{frame}
 
-    \section{Sources}
+    \section{Epilogue}
 
     \begin{frame}[t,fragile]{Sources}
         \begin{itemize}
