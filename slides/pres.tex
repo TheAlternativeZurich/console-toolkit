@@ -252,14 +252,10 @@ DESCRIPTION
 
     \begin{frame}[t,fragile]{Special places}
         \begin{itemize}
-            \item{\makebox[1.3cm]{\texttt{\textasciitilde\hfill}}User's home directory}
-            \item{\makebox[1.3cm]{\texttt{. }\hfill}The current directory}
-            \item{\makebox[1.3cm]{\texttt{..}\hfill}The directory above in the tree}
+            \item{\makebox[1.3cm]{\:\texttt{\textasciitilde\hfill}}User's home directory}
+            \item{\makebox[1.3cm]{\:\texttt{. }\hfill}The current directory}
+            \item{\makebox[1.3cm]{\:\texttt{..}\hfill}The directory above in the tree}
         \end{itemize}
-        % \begin{columns}[T]
-        %     \column{0.5\textwidth}
-        %     \column{0.5\textwidth}
-        % \end{columns}
     \end{frame}
 
     \section{Modifiying files}
@@ -288,7 +284,7 @@ cat pictures from the internet.
                 \begin{itemize}
                     \item Move command: \texttt{mv}
                     \item Syntax: \texttt{mv source destination}
-                    \item Useful to rename files
+                    \item Use \texttt{mv} to rename files
                 \end{itemize}
             \column{0.53\textwidth}
             \begin{bashenv}[\small]
@@ -346,6 +342,14 @@ cat2.jpg
             You can delete your entire file system with \texttt{sudo rm -rf /},
             or your entire home directory with \texttt{rm -rf \textasciitilde}\:!%
         \end{WarningBox}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Hidden files}
+        \begin{itemize}
+            \item{Hidden files start with a dot}
+            \item{\texttt{.hidden\_file}}
+            \item{Show them using \texttt{ls -a}}
+        \end{itemize}
     \end{frame}
 
     \section{Text files}
@@ -461,11 +465,11 @@ cat pictures from the internet.
         \begin{columns}[T]
             \column{0.5\textwidth}
 	    \begin{itemize}
-		    \item Every process has an ID an Linux. 
-		    \item View processes with \texttt{ps -e}.
-		    \item Kill a process with \texttt{kill id}.
-		    \item If ID is unknown, use \texttt{pkill name}.
-		    \item The \texttt{-9} flag works like a shotgun.
+		    \item Every process has a unique ID on Linux
+		    \item View processes with \texttt{ps aux}
+            \item Kill a process with \texttt{kill id}
+		    \item If ID is unknown, use \texttt{pkill name}
+		    \item The \texttt{-9} flag works like a shotgun
 	    \end{itemize}
             \column{0.5\textwidth}
 	    \begin{bashenv}[\small]
@@ -598,13 +602,12 @@ sudo dnf update
         \end{columns}
     \end{frame}
 
-
-    \begin{frame}[t,fragile]{Github}
+    \begin{frame}[t,fragile]{Building from source}
             \begin{itemize}
-                \item www.github.com has a \emph{lot} of software
-                \item All open source
-                \item This is just like software you download under Windows. Be careful!
-                \item If you find something you're interested in: \texttt{git clone link}
+                \item Sometimes software is unavailable in the repositories
+                \item Can download sources and compile them manually
+                \item Careful! No automatic updates, malware, package manager
+                    conflicts
             \end{itemize}
             \vspace{0.3cm}
             \begin{bashenv}[\small]
@@ -614,6 +617,32 @@ done.
 [luke@host ~]$ ls
 §\textcolor{dirblue}{dotty.g8}§
             \end{bashenv}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Building from source}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Download the sources
+                \item Follow the build instructions (README file)
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+git clone https://github.com/i3/i3
+            \end{bashenv}
+            \begin{bashenv}[\small]
+autoreconf -fi
+            \end{bashenv}
+            \begin{bashenv}[\small]
+mkdir -p build && cd build
+            \end{bashenv}
+            \begin{bashenv}[\small]
+../configure
+            \end{bashenv}
+            \begin{bashenv}[\small]
+make
+            \end{bashenv}
+        \end{columns}
     \end{frame}
 
     \section{SSH}
