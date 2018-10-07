@@ -509,6 +509,35 @@ PID TTY        TIME CMD
         \end{itemize}
     \end{frame}
 
+    \begin{frame}[t, fragile]{Using shellscripts}
+	    \begin{columns}[T]
+		    \column{0.5\textwidth}
+		    \begin{itemize}
+			    \item Scripts are just a sequence of commands
+			    \item Very easy automation!
+				    \begin{itemize}
+					    \item (for more, come to the Bash course)
+				    \end{itemize}
+		    \end{itemize}
+		    \column{0.5\textwidth}
+		    \begin{bashenv}[\scriptsize]
+### In file ~/scripts/music.sh:
+#!/usr/bin/env bash
+filename="$2.%(ext)s"
+echo "$1"
+youtube-dl -x "$1" -o "$filename"
+		    \end{bashenv}
+	    \end{columns}
+		    \vspace{0.5cm}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ cd scripts
+[luke@host ~]$ chmod +x music.sh
+[luke@host ~]$ ~/scripts/music.sh "http://y2u.be/dQw4w9WgXcQ" music
+# or:
+[luke@host ~]$ ./music.sh "http://y2u.be/dQw4w9WgXcQ" music
+		    \end{bashenv}
+    \end{frame}
+
     \section{Users \& rights}
 
     \section{Managing software}
@@ -709,12 +738,20 @@ cat ~/.ssh/id_rsa.pub | ssh username@euler.ethz.ch 'cat - >> .ssh/authorized_key
 
     \section{Backup}
     \begin{frame}[t, fragile]{Borg Backup}
-	    \begin{itemize}
-		    \item Backup data
-		    \item Does compression and deduplication automatically
-		    \item Possibility to encrypt
-		    \item Runs over ssh, network storage etc.
-	    \end{itemize}
+	    \begin{columns}[T]
+		    \column{0.5\textwidth}
+		    \begin{itemize}
+			    \item Backup data
+			    \item Does compression and deduplication automatically
+			    \item Possibility to encrypt
+			    \item Runs over ssh, network storage etc.
+		    \end{itemize}
+		    \column{0.5\textwidth}
+		    \begin{center}
+			    \includegraphics[width=0.6\columnwidth]{img/borg_logo.png}
+			    \vspace{2cm}
+		    \end{center}
+	    \end{columns}
     \end{frame}
 
     \begin{frame}[t, fragile]{Borg Example}
