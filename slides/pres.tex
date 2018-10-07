@@ -707,6 +707,36 @@ cat ~/.ssh/id_rsa.pub | ssh username@euler.ethz.ch 'cat - >> .ssh/authorized_key
         \end{bashenv}
     \end{frame}
 
+    \section{Backup}
+    \begin{frame}[t, fragile]{Borg Backup}
+	    \begin{itemize}
+		    \item Backup data
+		    \item Does compression and deduplication automatically
+		    \item Possibility to encrypt
+		    \item Runs over ssh, network storage etc.
+	    \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t, fragile]{Borg Example}
+		    \vspace{0.5cm}
+		    \begin{itemize}
+			    \item Repos are collections of backups
+			    \item Create new backups with \texttt{borg create}
+			    \item Restore files with \texttt{borg extract <archive>}
+		    \end{itemize}
+		    \vspace{0.5cm}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ borg init --encryption=repokey /path/to/repo
+Enter passphrase:
+Repeat passphrase:
+[luke@host ~]$ borg create /path/to/repo
+[luke@host ~]$ borg create --stats /path/to/repo::Backup1 ~/dir_to_backup
+[luke@host ~]$ borg create --stats /path/to/repo::Backup2 ~/dir_to_backup
+[luke@host ~]$ borg extract /path/to/repo::Backup1
+		    \end{bashenv}
+		    \vspace{0.5cm}
+    \end{frame}
+
     \section{Sources}
 
     \begin{frame}[t,fragile]{Sources}
