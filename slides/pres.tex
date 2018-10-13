@@ -36,7 +36,7 @@
             \column{0.5\textwidth}
             \textbf{Part 2}
             \begin{itemize}
-                \item{Users \& rights}
+                \item{Users \& permissions}
                 \item{Managing software}
                 \item{SSH}
                 \item{Git}
@@ -462,6 +462,106 @@ cat pictures from the internet.
         \end{bashenv}
     \end{frame}
 
+    \section{Users \& permissions}
+
+    \begin{frame}[t,fragile]{Users \& permissions}
+        \begin{itemize}
+            \item{Linux is a \emph{multi-user operating system}}
+            \item{There can be many user accounts}
+            \item{Different users can even use the computer at the same time!}
+            \item{You usually only use your personal user account}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Users}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \textbf{Personal user}
+            \begin{itemize}
+                \item{Home directory in \texttt{/home/userx}}
+                \item{Can only access files in home directory}
+                \item{Can only stop processes started by itself}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \textbf{Root user}
+            \begin{itemize}
+                \item{Also \emph{called the superuser}}
+                \item{''System administrator``}
+                \item{Can do anything on the system}
+                \item{Access to all files}
+                \item{Can kill any process}
+                \item{Home directory in \texttt{/root}}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Unix file permissions}
+        \vspace{0.7cm}
+        \begin{center}
+            \includegraphics[width=1.0\textwidth]{img/permissions_overview.png}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \includegraphics[width=1.0\columnwidth]{img/permissions_example.png}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{r}: Permission to read file
+                \item \texttt{w}: Permission to write to file
+                \item \texttt{x}: Permission to execute file
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Changing permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+chmod {u,g,a}{+,-}{r,w,x} file
+chown OWNER:GROUP file
+            \end{bashenv}
+            \vspace{0.65cm}
+            \begin{bashenv}[\small]
+chmod +x program.sh
+chmod u-x program.sh
+chmod g+rw file.txt
+chown luke:luke file.txt
+            \end{bashenv}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{chmod}: Change permissions
+                \item \texttt{chown}: Change owner, group
+                \vspace{0.8cm}
+                \item Allow everyone to execute
+                \item Remove execution permission for user
+                \item Allow group to read/write
+                \item Change ownership to user \texttt{luke}, group \texttt{luke}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Octal permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+chmod 744 program.sh
+            \end{bashenv}
+            \begin{itemize}
+                \item \texttt{4: read}
+                \item \texttt{2: write}
+                \item \texttt{1: execute}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Octal representation allows setting all permissions in one go
+                \item Desired permissions are added up
+                \item \texttt{7 = read + write + execute}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
     \section{Meta}
 
     \begin{frame}[t,fragile]{Tab completion}
@@ -529,7 +629,7 @@ PID TTY        TIME CMD
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[t, fragile]{Using shell scripts}
+    \begin{frame}[t, fragile]{Writing shell scripts}
 	    \begin{columns}[T]
 		    \column{0.5\textwidth}
 		    \begin{itemize}
@@ -556,106 +656,6 @@ youtube-dl -x "$1" -o "$filename"
 # or:
 [luke@host ~]$ ./music.sh "https://www.youtube.com/watch?v=dQw4w9WgXcQ" music
 		    \end{bashenv}
-    \end{frame}
-
-    \section{Users \& rights}
-
-    \begin{frame}[t,fragile]{Users}
-        \begin{itemize}
-            \item{Linux is a \emph{multi-user operating system}}
-            \item{There can be many user accounts}
-            \item{Different users can even use the computer at the same time!}
-            \item{You usually only use your personal user account}
-        \end{itemize}
-    \end{frame}
-
-    \begin{frame}[t,fragile]{Users}
-        \begin{columns}[T]
-            \column{0.5\textwidth}
-            \textbf{Personal user}
-            \begin{itemize}
-                \item{Home directory in \texttt{/home/userx}}
-                \item{Can only access files in home directory}
-                \item{Can only stop processes started by itself}
-            \end{itemize}
-            \column{0.5\textwidth}
-            \textbf{Root user}
-            \begin{itemize}
-                \item{Also \emph{called the superuser}}
-                \item{''System administrator``}
-                \item{Can do anything on the system}
-                \item{Access to all files}
-                \item{Can kill any process}
-                \item{Home directory in \texttt{/root}}
-            \end{itemize}
-        \end{columns}
-    \end{frame}
-
-    \begin{frame}[t,fragile]{Unix file permissions}
-        \vspace{0.7cm}
-        \begin{center}
-            \includegraphics[width=0.8\textwidth]{img/permissions_overview.png}
-        \end{center}
-    \end{frame}
-
-    \begin{frame}[t,fragile]{Permissions}
-        \begin{columns}[T]
-            \column{0.5\textwidth}
-            \includegraphics[width=1.0\columnwidth]{img/permissions_example.png}
-            \column{0.5\textwidth}
-            \begin{itemize}
-                \item \texttt{r}: Permission to read file
-                \item \texttt{w}: Permission to write to file
-                \item \texttt{x}: Permission to execute file
-            \end{itemize}
-        \end{columns}
-    \end{frame}
-
-    \begin{frame}[t,fragile]{Changing permissions}
-        \begin{columns}[T]
-            \column{0.5\textwidth}
-            \begin{bashenv}[\small]
-chmod {u,g,a}{+,-}{r,w,x} file
-chown OWNER:GROUP file
-            \end{bashenv}
-            \vspace{0.65cm}
-            \begin{bashenv}[\small]
-chmod +x program.sh
-chmod u-x program.sh
-chmod g+rw file.txt
-chown luke:luke file.txt
-            \end{bashenv}
-            \column{0.5\textwidth}
-            \begin{itemize}
-                \item \texttt{chmod}: Change permissions
-                \item \texttt{chown}: Change owner, group
-                \vspace{0.8cm}
-                \item Allow everyone to execute
-                \item Remove execution permission for user
-                \item Allow group to read/write
-                \item Change ownership to user \texttt{luke}, group \texttt{luke}
-            \end{itemize}
-        \end{columns}
-    \end{frame}
-
-    \begin{frame}[t,fragile]{Octal permissions}
-        \begin{columns}[T]
-            \column{0.5\textwidth}
-            \begin{bashenv}[\small]
-chmod 744 program.sh
-            \end{bashenv}
-            \begin{itemize}
-                \item \texttt{4: read}
-                \item \texttt{2: write}
-                \item \texttt{1: execute}
-            \end{itemize}
-            \column{0.5\textwidth}
-            \begin{itemize}
-                \item Octal representation allows setting all permissions in one go
-                \item Desired permissions are added up
-                \item \texttt{7 = read + write + execute}
-            \end{itemize}
-        \end{columns}
     \end{frame}
 
     \section{Piping and Redirection}
