@@ -591,6 +591,73 @@ youtube-dl -x "$1" -o "$filename"
         \end{columns}
     \end{frame}
 
+    \begin{frame}[t,fragile]{Unix file permissions}
+        \vspace{0.7cm}
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{img/permissions_overview.png}
+        \end{center}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \includegraphics[width=1.0\columnwidth]{img/permissions_example.png}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{r}: Permission to read file
+                \item \texttt{w}: Permission to write to file
+                \item \texttt{x}: Permission to execute file
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Changing permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+chmod {u,g,a}{+,-}{r,w,x} file
+chown OWNER:GROUP file
+            \end{bashenv}
+            \vspace{0.65cm}
+            \begin{bashenv}[\small]
+chmod +x program.sh
+chmod u-x program.sh
+chmod g+rw file.txt
+chown luke:luke file.txt
+            \end{bashenv}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item \texttt{chmod}: Change permissions
+                \item \texttt{chown}: Change owner, group
+                \vspace{0.8cm}
+                \item Allow everyone to execute
+                \item Remove execution permission for user
+                \item Allow group to read/write
+                \item Change ownership to user \texttt{luke}, group \texttt{luke}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Octal permissions}
+        \begin{columns}[T]
+            \column{0.5\textwidth}
+            \begin{bashenv}[\small]
+chmod 744 program.sh
+            \end{bashenv}
+            \begin{itemize}
+                \item \texttt{4: read}
+                \item \texttt{2: write}
+                \item \texttt{1: execute}
+            \end{itemize}
+            \column{0.5\textwidth}
+            \begin{itemize}
+                \item Octal representation allows setting all permissions in one go
+                \item Desired permissions are added up
+                \item \texttt{7 = read + write + execute}
+            \end{itemize}
+        \end{columns}
+    \end{frame}
+
     \section{Ranger}
 
     \begin{frame}[t, fragile]
@@ -615,8 +682,9 @@ youtube-dl -x "$1" -o "$filename"
 
     \begin{frame}[t, fragile]
 	    \frametitle{Ranger image preview}
-		\includegraphics[width=0.7\columnwidth]{img/ranger_img_preview.png}
+	    \includegraphics[width=0.7\columnwidth]{img/ranger_img_preview.png}
     \end{frame}
+
 
     \section{Managing software}
 
