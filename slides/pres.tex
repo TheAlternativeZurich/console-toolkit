@@ -529,7 +529,7 @@ PID TTY        TIME CMD
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[t, fragile]{Using shellscripts}
+    \begin{frame}[t, fragile]{Using shell scripts}
 	    \begin{columns}[T]
 		    \column{0.5\textwidth}
 		    \begin{itemize}
@@ -540,8 +540,8 @@ PID TTY        TIME CMD
 				    \end{itemize}
 		    \end{itemize}
 		    \column{0.5\textwidth}
+            File \texttt{~/scripts/music.sh}:
 		    \begin{bashenv}[\scriptsize]
-### In file ~/scripts/music.sh:
 #!/usr/bin/env bash
 filename="$2.%(ext)s"
 echo "$1"
@@ -552,9 +552,9 @@ youtube-dl -x "$1" -o "$filename"
 		    \begin{bashenv}[\scriptsize]
 [luke@host ~]$ cd scripts
 [luke@host ~]$ chmod +x music.sh
-[luke@host ~]$ ~/scripts/music.sh "http://y2u.be/dQw4w9WgXcQ" music
+[luke@host ~]$ ~/scripts/music.sh "https://www.youtube.com/watch?v=dQw4w9WgXcQ" music
 # or:
-[luke@host ~]$ ./music.sh "http://y2u.be/dQw4w9WgXcQ" music
+[luke@host ~]$ ./music.sh "https://www.youtube.com/watch?v=dQw4w9WgXcQ" music
 		    \end{bashenv}
     \end{frame}
 
