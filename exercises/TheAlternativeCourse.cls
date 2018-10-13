@@ -43,3 +43,14 @@
     fonttitle=\bfseries,
     title=Exercise~\thetcbcounter: #2,#1}
 
+\makeatletter
+\newtcolorbox[]{@hintbox}{%
+    colback=ldblue!10!white,
+    colframe=ldblue,
+    leftrule=3mm,
+    }
+
+\newenvironment{hintbox}
+{\begin{@hintbox}\textbf{Hint:}}
+{\end{@hintbox}}
+\makeatother

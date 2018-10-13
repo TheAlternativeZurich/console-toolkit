@@ -65,8 +65,41 @@ on how to use a command. \\
     Look at the help output of \texttt{ls}. What is the flag to see hidden files?
 \end{exercisebox}
 
-\section{Whatever}
+\section{Files}
 
-Lorem ipsum.
+This section introduces you to basic commands related to files. We will first look at a command that can be used for creating empty files.\\
+
+The \texttt{touch} command is most frequently used for creating new, empty files. If you check the manual, you will see that it can also change certain file timestamps (access and modification times).\\
+%
+\begin{exercisebox}{The touch command}
+	Switch to your home directory. Type \texttt{touch file}. A new file should have been created. Confirm that this is the case.
+\end{exercisebox}\\
+%
+We already saw \texttt{cat} in the previous section. It is time to introduce another important command to look at files: \texttt{less}. This command is great if you want to look at large bodies of text because, unlike \texttt{cat}, it has a built-in scroll function. Once you are done looking at the file, you can quit with \texttt{q}.\\
+%
+\begin{exercisebox}{Less is more}
+	There is also a \texttt{more} command. It is older than \texttt{less} and thus less frequently used. Find a large file (or create onw) and look at it with \texttt{less FILE}. How does it differ from \texttt{more}? Read the manuals if you're confused.
+\end{exercisebox}
+
+\subsection{Permissions}
+
+We will now look at two commands to fiddle with permissions.\\
+
+\texttt{chown} stands for "change owner". It is used to change the owner of a given file. It can also change the group ownership.
+
+\begin{exercisebox}{Changing ownership}
+	Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to change its ownership to the \texttt{root} user (you will probably need \texttt{sudo} for this). Try deleting it. Then change the ownership back to your own user.
+\end{exercisebox}
+
+A very similar command is \texttt{chmod}. \texttt{chmod} stands for "change file mode bits" and controls the following permissions on any given file:
+\begin{itemize}
+	\item Read: Who can see the file data.
+	\item Write: Who can modify the file.
+	\item Execute: Who is allowed to run the file (like a program or a script)
+\end{itemize}
+
+\begin{hintbox}
+Permissions can be read using `ls -l`.
+\end{hintbox}
 
 \end{document}
