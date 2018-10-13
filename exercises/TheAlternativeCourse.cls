@@ -34,6 +34,8 @@
 
 \definecolor{ldorange}{HTML}{F18A20}
 \definecolor{ldblue}{HTML}{254471}
+\definecolor{grey1}{HTML}{aaaaaa}
+\definecolor{grey2}{HTML}{efefef}
 
 \newtcolorbox[auto counter, number within=section]{exercisebox}[2][]{%
     colback=yellow!6!white,
@@ -42,4 +44,10 @@
     enhanced,
     fonttitle=\bfseries,
     title=Exercise~\thetcbcounter: #2,#1}
+
+\newtcolorbox{cmdbox}{%
+    colback=grey2,
+    colframe=grey1,
+    coltitle=black,
+    enhanced}
 
