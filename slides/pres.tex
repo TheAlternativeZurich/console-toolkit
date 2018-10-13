@@ -658,6 +658,157 @@ chmod 744 program.sh
         \end{columns}
     \end{frame}
 
+    \section{Piping and Redirection}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Complicated needs}
+	    How would you design an interface that can...
+	    \begin{itemize}
+		    \item ...delete files larger than 100MB?
+		    \item ...show the last 2 lines of a file?
+		    \item ...sort files by length?
+		    \item ...search calendar entries and create reminders?
+	    \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Complicated needs}
+	    Many possible answers:
+	    \begin{itemize}
+		    \item Big GUI that does everything
+		    \item A simple tool that users can extend themselves
+		    \item Domain specific language that users write queries with
+		    \item Many simple and combinable tools
+	    \end{itemize}
+	    Unix chooses the last two approaches
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Piping and redirection}
+	    \begin{itemize}
+		    \item Unix has small and orthogonal tools
+		    \item Piping and redirection are how to combine them
+	    \end{itemize}
+    \end{frame}
+
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Piping and redirection}
+	    \begin{columns}[T]
+		    \column{0.5\textwidth}
+		    \begin{itemize}
+			    \item Piping sends output from one command to another command
+			    \item Redirection writes to files (streams)
+		    \end{itemize}
+		    \column{0.5\textwidth}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ cat numbers | sort
+five
+four
+one
+three
+two
+zero
+		    \end{bashenv}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ cat numbers > same_numbers
+		    \end{bashenv}
+	    \end{columns}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Piping}
+	    \begin{columns}[T]
+		    \column{0.5\textwidth}
+		    \begin{itemize}
+			    \item Uses the pipe symbol: \texttt{|}
+			    \item Useful for sequential composition
+			    \item Only works in "one direction"
+			    \item Internally connects output of one process to output of other process
+		    \end{itemize}
+		    \column{0.5\textwidth}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ cat numbers | tail -n 2
+nine
+ten
+		    \end{bashenv}
+		    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ cat numbers | grep "..."
+one
+two
+six
+ten
+		    \end{bashenv}
+	    \end{columns}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Piping}
+
+	    List unique owners of files in current directory:
+	    \begin{itemize}
+		    \item List files in directory
+		    \item Omit first two lines
+		    \item Truncate whitespace
+		    \item Cut (delete) all columns except the third
+		    \item Sort alphabetically
+		    \item Only show unique entries
+	    \end{itemize}
+	    \vspace{0.1cm}
+	    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ ls -l | tail -n +2 | sed 's/\s\s*/ /g' | cut -d ' ' -f 3 | sort | uniq
+	    \end{bashenv}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Redirection}
+	    \begin{columns}[T]
+		    \column{0.5\textwidth}
+		    \begin{itemize}
+			    \item{\makebox[1.7cm]{\:\texttt{>  file\hfill}}} Write output to file
+			    \item{\makebox[1.7cm]{\:\texttt{>\hspace{0cm}> file\hfill}}} Append output to file
+			    \item{\makebox[1.7cm]{\:\texttt{<  file\hfill}}} Read input from file
+		    \end{itemize}
+		    \column{0.5\textwidth}
+		    \begin{bashenv}[\small]
+[luke@host ~]$ echo "Hello!" > hello.txt
+[luke@host ~]$ cat hello.txt
+Hello World!
+[luke@host ~]$ cat < hello.txt
+Hello World!
+		    \end{bashenv}
+	    \end{columns}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Redirection}
+	    Redirection is useful!
+	    \begin{itemize}
+		    \item Store final or intermediate results
+		    \item Append output to files
+	    \end{itemize}
+	    \vspace{0.3cm}
+	    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ ls -l | tail -n +2 | sed 's/\s\s*/ /g' > result
+[luke@host ~]$ cut -d ' ' -f 3 < result | sort | uniq
+	    \end{bashenv}
+    \end{frame}
+
+    \begin{frame}[t, fragile]
+	    \frametitle{Redirection}
+	    Redirection is useful! (cont.)
+	    \begin{itemize}
+		    \item Store final or intermediate results
+		    \item Append output to files
+	    \end{itemize}
+	    \vspace{0.3cm}
+	    \begin{bashenv}[\scriptsize]
+[luke@host ~]$ ./logger_script >> log.txt
+
+[luke@host ~]$ echo "Logging done!" >> log.txt
+	    \end{bashenv}
+    \end{frame}
+
     \section{Ranger}
 
     \begin{frame}[t, fragile]
