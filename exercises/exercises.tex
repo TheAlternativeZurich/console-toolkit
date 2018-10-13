@@ -1,9 +1,6 @@
-%
-% Gruppenarbeit NHW 2018: Cryptocurrencies
-% Lizenz: CC-BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/legalcode.de)
-%
-
 \documentclass{TheAlternativeCourse}
+
+\usepackage{menukeys}
 
 \title{Console Toolkit Exercises}
 \date{}
@@ -11,9 +8,62 @@
 \begin{document}
 \maketitle
 
-\section{Section 1}
+\section{Introduction}
 
-Hi this is author
+Welcome to this exercise session! This is a practical exercise on the Linux
+command line.  If you have any question about the exercises, feel free to ask
+the helpers for assistance.
+
+
+\subsection*{Difficulty}
+
+The exercises are designed in such a way that you will have to find solutions
+by reading the manuals and using search engines. You are expected to come up
+with appropriate solutions on your own, there will be no step-by-step guided
+exercises!
+
+\subsection*{Liability}
+
+By taking part in this exercise, you acknowledge that you alone are responsible
+for your computer. TheAlternative and its parent organisation, the Student
+Sustainability Commission, will not be held liable for any damages or loss of
+data.
+
+\pagebreak
+
+\section{Basics}
+
+To solve some of the exercises, you will need to download some files. These
+can be found in a Git repository. If you don't have \texttt{git} installed,
+now is the time to do so. \\
+%
+\begin{exercisebox}{Getting the repository}
+    Open a terminal and enter the following: \\
+    \texttt{git clone INSERT\_HERE}
+\end{exercisebox}
+
+\subsection{Getting help}
+
+\texttt{man} is a command you will need throughout all of the following
+exercises.  It stands for ''manual`` and shows you what almost any given
+command can do and which options are available for it.  Almost all commands
+provide such a ''manpage``, which is typically written by the developers
+themselves. \\
+%
+\begin{exercisebox}{The manual's manual}
+    The \texttt{man} command itself has its own manpage. Type \texttt{man man}
+    to access it, use the arrow keys to scroll, and press \keys{q} to exit.
+    Have a look around, especially at the different section numbers!
+\end{exercisebox}
+%
+An alternative to using the man pages is to try and see if a command has a help
+option. This is usually displayed by appending the option \texttt{--help} after the
+name of the command, which will often display much shorter and concise instructions
+on how to use a command. \\
+%
+\begin{exercisebox}{The help option}
+    Look at the help output of \texttt{ls}. What is the flag to see hidden files?
+\end{exercisebox}
 
 \section{Whatever}
 

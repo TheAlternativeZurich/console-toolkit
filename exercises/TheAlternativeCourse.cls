@@ -10,11 +10,13 @@
 \RequirePackage{scrlayer-scrpage}   % KOMA Script header/footer package
 \RequirePackage{graphicx}           % \includegraphics{...}
 \RequirePackage[showseconds=false,showzone=false]{datetime2}
+\RequirePackage{xcolor}
+\RequirePackage[most]{tcolorbox}
 
 % helvetica font
-\RequirePackage[scaled]{helvet}
-\RequirePackage[T1]{fontenc}
-\renewcommand\familydefault{\sfdefault}
+% \RequirePackage[scaled]{helvet}
+% \RequirePackage[T1]{fontenc}
+% \renewcommand\familydefault{\sfdefault}
 
 % header / footer
 \KOMAoptions{headsepline,headheight=27.5pt}
@@ -29,4 +31,15 @@
 
 \setlength{\voffset}{-1.2cm} % space before header
 \setlength{\textheight}{1.15\textheight} % height of text
+
+\definecolor{ldorange}{HTML}{F18A20}
+\definecolor{ldblue}{HTML}{254471}
+
+\newtcolorbox[auto counter, number within=section]{exercisebox}[2][]{%
+    colback=yellow!6!white,
+    colframe=ldorange,
+    coltitle=black,
+    enhanced,
+    fonttitle=\bfseries,
+    title=Exercise~\thetcbcounter: #2,#1}
 
