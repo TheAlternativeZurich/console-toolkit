@@ -1,6 +1,9 @@
 \documentclass{TheAlternativeCourse}
 
 \usepackage{menukeys}
+\usepackage{tabularx}
+\usepackage{float}
+\usepackage{caption}
 
 \title{Console Toolkit Exercises}
 \date{}
@@ -20,7 +23,11 @@ the helpers for assistance.
 The exercises are designed in such a way that you will have to find solutions
 by reading the manuals and using search engines. You are expected to come up
 with appropriate solutions on your own, there will be no step-by-step guided
-exercises!
+exercises! \\\\
+%
+There will be quite simple exercises for complete beginners at the start,
+but there are also some much more difficult ones further into the exercise.
+Feel free to skip ahead!
 
 \subsection*{Liability}
 
@@ -53,7 +60,7 @@ set some options to alter the behaviour of a command. They are of the form
 An example of a more involved command:
 
 \begin{cmdbox}
-\texttt{ls -l | wc -l}
+\texttt{ls -l --human-readable \textasciitilde/Downloads}
 \end{cmdbox}
 
 \subsection{Getting help}
@@ -80,6 +87,130 @@ on how to use a command. \\
 \begin{exercisebox}{The help option}
     Look at the help output of \texttt{ls}. What is the flag to see hidden files?
 \end{exercisebox}
+
+\subsection{Navigating directories}
+%
+You can navigate your file system in the terminal, just like you could with
+a graphical program. Below are the most important commands.
+%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        width=1.0\linewidth,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for navigating directories}]
+        \textbf{Command} & \textbf{Description} \\
+        \texttt{pwd} & Display the current working directory. \\
+        \texttt{tree \$dir} & Get a visualization of the directory tree under
+            the current working directory. \\
+        \texttt{ls \$dir} & List all files and directories in the current
+            working directory. \\
+        \texttt{cd \$dir} & Change the current working directory to the given
+            directory. \\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+%
+\begin{exercisebox}{Making yourself at home}
+    Have a look around your home directory and try out the mentioned commands.
+    You will most likely recognise the layout from your graphical file browser.
+    Remember you can always return to your home directory by running
+    \texttt{cd} without any arguments.
+\end{exercisebox}
+%
+\subsection{Modifying directories}
+%
+Just like in graphical programs, you can create and delete directories on the
+command line.
+%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for modifying directories}]
+        \textbf{Command} & \textbf{Description} \\
+        \texttt{mkdir \$dir} & Create a new directory with the given name. \\
+        \texttt{rmdir \$dir} & Remove a directory. Will not work with
+            non-empty directories. \\
+        \texttt{rm -r \$dir} &  Remove a directory and its contents.
+            {\color{red}Attention! There is no trashcan on the command line!
+            Files and directories will be deleted irrevocably.} \\
+        \texttt{cp -r \$source \$target} &  Copy a source directory
+            (recursively with all its contents) to a target. \\
+        \texttt{mv \$source \$target} & Move a file or directory.
+            Also used to rename files/directories. \\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+%
+\begin{exercisebox}{Creating your first directory}
+    Create a directory for the following exercises (you can call it
+    \texttt{console-toolkit}).  Change into that directory and create a file
+    call \texttt{notes}. Then move the exercise file directory you downloaded
+    in task 2.1 into your newly created directory.
+\end{exercisebox}
+%
+\subsection{Viewing files}
+If you want to view the contents of a text file, you have the following
+options:
+%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for viewing files}]
+        \textbf{Command} & \textbf{Description} \\
+        \texttt{cat \$file} & Output a file to the terminal. \\
+        \texttt{head \$file} & Output the first couple of lines to the terminal. \\
+        \texttt{tail \$file} & Output the last couple of lines to the terminal. \\
+        \texttt{less \$file} & Browse a file in a visual viewer. \\
+        \texttt{touch \$file} & Create a new file when it doesn't exist yet. \\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+%
+\begin{exercisebox}{Log files}
+    \texttt{tail} is often used to inspect errors log files. Use tail to find the
+    last three lines of \texttt{dmesg\_log} (in the exercise files).
+\end{exercisebox}
+
+\subsection{Console tips \& tricks}
+
+There are many little things that can make your life using the terminal a
+little bit easier.  Following is a table with the most important keyboard
+shortcuts you can use to speed up your workflow.
+
+%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for viewing files}]
+        \keys{\ctrl}+\keys{w} & Delete one word backwards. \\
+        \keys{\ctrl}+\keys{u} & Delete the entire line. \\
+        \keys{\ctrl}+\keys{l} & Clear the terminal. \\
+        \keys{\ctrl}+\keys{a} & Go to the beginning of the line. \\
+        \keys{\ctrl}+\keys{e} & Go to the end of the line. \\
+        \keys{\ctrl}+\keys{c} & Terminate the currently runnig process. \\
+        \keys{\ctrl}+\keys{d} & Quit the shell. \\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
 
 \section{Whatever}
 

@@ -10,7 +10,7 @@
 \RequirePackage{scrlayer-scrpage}   % KOMA Script header/footer package
 \RequirePackage{graphicx}           % \includegraphics{...}
 \RequirePackage[showseconds=false,showzone=false]{datetime2}
-\RequirePackage{xcolor}
+\RequirePackage[table]{xcolor}
 \RequirePackage[most]{tcolorbox}
 
 % helvetica font
@@ -36,17 +36,21 @@
 \definecolor{ldblue}{HTML}{254471}
 \definecolor{grey1}{HTML}{aaaaaa}
 \definecolor{grey2}{HTML}{efefef}
+\definecolor{lightblue}{HTML}{d9edfc}
 
 \newtcolorbox[auto counter, number within=section]{exercisebox}[2][]{%
     colback=yellow!6!white,
+    fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
     colframe=ldorange,
     coltitle=black,
     enhanced,
     fonttitle=\bfseries,
-    title=Exercise~\thetcbcounter: #2,#1}
+    title=Task~\thetcbcounter: #2,#1}
 
 \newtcolorbox{cmdbox}{%
     colback=grey2,
+    fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+    enhanced,
     colframe=grey1,
     coltitle=black,
     enhanced}
