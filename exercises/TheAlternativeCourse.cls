@@ -58,6 +58,8 @@
 \makeatletter
 \newtcolorbox[]{@hintbox}{%
     colback=ldblue!10!white,
+    fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+    enhanced,
     colframe=ldblue,
     leftrule=3mm,
     }
