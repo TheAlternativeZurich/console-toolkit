@@ -175,7 +175,6 @@ options:
         \texttt{head \$file} & Output the first couple of lines to the terminal. \\
         \texttt{tail \$file} & Output the last couple of lines to the terminal. \\
         \texttt{less \$file} & Browse a file in a visual viewer. \\
-        \texttt{touch \$file} & Create a new file when it doesn't exist yet. \\
     \end{tcolorbox}
     \label{tab1}
 \end{table}
@@ -212,7 +211,7 @@ shortcuts you can use to speed up your workflow.
     \label{tab1}
 \end{table}
 
-\section{Files}
+\section{Files \& Permissions}
 
 This section introduces you to basic commands related to files. We will first look at a command that can be used for creating empty files.\\
 
@@ -222,14 +221,6 @@ The \texttt{touch} command is most frequently used for creating new, empty files
 	Switch to your home directory. Type \texttt{touch file}. A new file should have been created. Confirm that this is the case.
 \end{exercisebox}\\
 %
-We already saw \texttt{cat} in the previous section. It is time to introduce another important command to look at files: \texttt{less}. This command is great if you want to look at large bodies of text because, unlike \texttt{cat}, it has a built-in scroll function. Once you are done looking at the file, you can quit with \keys{q}.\\
-%
-\begin{exercisebox}{Less is more}
-	There is also a \texttt{more} command. It is older than \texttt{less} and thus less frequently used. Find a large file (or create onw) and look at it with \texttt{less FILE}. How does it differ from \texttt{more}? Read the manuals if you're confused.
-\end{exercisebox}
-
-\subsection{Permissions}
-
 We will now look at two commands to fiddle with permissions.\\
 
 \texttt{chown} stands for "change owner". It is used to change the owner of a given file. It can also change the group ownership.
@@ -249,4 +240,120 @@ A very similar command is \texttt{chmod}. \texttt{chmod} stands for "change file
 	Permissions can be read using \texttt{ls -l}.
 \end{hintbox}
 
+\begin{exercisebox}{Read, Write, Execute}
+	The read, write and execute permissions do different things, depending on whether they are set for directories or for files. Find out what they mean for files and directorues by playing around with the \texttt{chmod} command, readings its manual or searching on the Internet.
+\end{exercisebox}
+
+Here are other commands that are frequently used for finding displaying about files:\\
+%
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for getting info about files}]
+	    \texttt{wc \$file} & Display line, word, and character count of a file \\
+	    \texttt{diff \$file1 \$file2} & Show differences between files\\
+	    \texttt{ln \$target \$link\_name} & Create a link\\
+	    \texttt{du \$file} & Show file size ("disk usage") in blocks\\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+
+\begin{exercisebox}{wc reading session}
+	Sometimes you just want to know the length of some text you copy-pasted from the Internet. Read the manual of \texttt{wc} to find out how you can read from standard input.
+\end{exercisebox}
+\begin{hintbox}
+	Reading from standard input means you can just type text into the console. When you are done, hit \keys{Enter} to enter a newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file character in Unix-like systems. It signals to the command that it should close its input. You can even use it to close your terminal.
+\end{hintbox}
+
+\begin{exercisebox}{Hey! Listen!}
+	Read the \texttt{ln} manual to find out about symbolic links. Symbolic links are like shortcuts in Windows and OS X and are often more useful than hard links (their counterpart). Create a link from your home directory to a directory you use frequently.
+\end{exercisebox}
+	
+\section{Jobs \& Processes}
+
+Jobs are groups processes that are running in the current shell. Usually, a job only consists of one process but sometimes a job is a process \emph{pipeline} consisting of multiple jobs, such as \texttt{echo "Hello" | cat -}. Read the \texttt{JOB CONTROL} section of the \texttt{bash} manual if you want to study the details.
+
+Knowing how to control jobs is essential if you want to be able to simultaneously run multiple processes from the same shell.
+
+\subsection{Job control}
+Jobs can be put into background, started in background, brought to foreground and killed. We say a job is running in the background when it is currently running but not blocking the shell. In other words, when a job is running in the background, you can still use your shell normally (although the job might produce output that will get displayed on your terminal which can be quite annoying).
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Working with jobs}]
+	    \texttt{jobs} & List all jobs in the current shell\\
+	    \texttt{cmd \&} & Start \texttt{cmd} in the background\\
+	    \texttt{fg} & Bring a job into the foreground\\
+	    \texttt{bg} & Bring a job into the background\\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+
+Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a job in the foreground and \keys{\ctrl}+\keys{z} to suspend a job in the foreground. Suspended jobs are paused until they are resumed with either \texttt{fg} or \texttt{bg}. Note that processes can choose to overwrite these shortcuts so they are not guaranteed to work. If they don't work, we can always use more drastic measures...
+
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Controlling jobs}]
+		\texttt{\keys{\ctrl}+\keys{z}} & Suspend current job. Processes may ignore this.\\
+		\texttt{\keys{\ctrl}+\keys{c}} & Kill current job. Processes may ignore this.\\
+	    \texttt{kill \%N} & Kill job, where N is the number of the job as listed in \texttt{jobs}. Processes may \emph{still} ignore this.\\
+	    \texttt{kill -9 \%N} & Kill job with number N for sure.\\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+
+\subsection{Processes}
+
+Processes are system-wide. Each process has a unique process ID, also called PID for short. You can think of processes as "separate units of computing". For example, an \texttt{echo} command spawns a new process that is separated from the shell process that you are in (which is typically \texttt{bash}).
+
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Controlling processes}]
+	    \texttt{top} & Display info about all currently running processes. Quit with \keys{q}\\
+	    \texttt{htop} & A more modern version of \texttt{top}. It is not installed by default on most distros but you can install it with your package manager\\
+	    \texttt{kill \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This is the nice way of killing a process because it allows the process to react to the killing and perform some cleanup\\
+	    \texttt{kill -9 \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This kills the process instantly\\
+	    \texttt{pkill \texttt{pattern}} & Like PID but kills processes whose names match a \texttt{pattern} instead\\
+	    \texttt{pkill -9 \texttt{pattern}} & Similar to \texttt{kill -9}\\
+	    \texttt{ps} & Powerful utility to display a lot of information about specific processes\\
+    \end{tcolorbox}
+    \label{tab1}
+\end{table}
+
+\begin{hintbox}
+	\texttt{kill} and \texttt{pkill} actually send so-called signals to processes. There are many signals that all do different things. When you call \texttt{kill PID}, the signal \texttt{15} is sent to the process \texttt{PID}. This signal is called the \texttt{SIGTERM} signal and is used to \emph{ask} a process to terminate. When we write \texttt{kill -9 PID}, we are actually sending the signal \texttt{9} which is also known as \texttt{SIGKILL} and kills a process instantly. Read \texttt{man 7 signal} if you want to know more about signals.
+\end{hintbox}
+
+\begin{exercisebox}{Killed in their sleep}
+	Start a new process by typing \texttt{sleep 1000} in your shell. Open another shell. Use \texttt{top}, \texttt{htop} or \texttt{ps} to figure out the PID of the \texttt{sleep} process. Kill it.
+\end{exercisebox}
+
+\begin{exercisebox}{A job for kill}
+	\texttt{kill} also works on jobs. Start \texttt{sleep 1000} in the background (or start it in the foreground, suspend it, then bring it to the background). Then type \texttt{kill \%N} where \texttt{N} is the job's number (probably \texttt{1}). Check the output of the \texttt{jobs} command and confirm that the job is not displayed anymore.
+\end{exercisebox}
 \end{document}
