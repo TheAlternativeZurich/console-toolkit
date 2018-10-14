@@ -145,8 +145,8 @@ command line.
         \texttt{rmdir DIR} & Remove a directory. Will not work with
             non-empty directories. \\
         \texttt{rm -r DIR} &  Remove a directory and its contents.
-            {\color{exclamred}Attention! There is no trashcan on the command line!
-            Files and directories will be deleted irrevocably.} \\
+            {\color{exclamred}Attention! There is no trashcan on the command
+            line!  Files and directories will be deleted irrevocably.} \\
         \texttt{cp -r SOURCE TARGET} &  Copy a source directory
             (recursively with all its contents) to a target. \\
         \texttt{mv SOURCE TARGET} & Move a file or directory.
@@ -260,11 +260,15 @@ file mode bits'' and controls the following permissions on any given file:
 
 \hintbox{Permissions can be read using \texttt{ls -l}.}
 
-\begin{exercisebox}{Read, Write, Execute}
-	The read, write and execute permissions do different things, depending on whether they are set for directories or for files. Find out what they mean for files and directorues by playing around with the \texttt{chmod} command, readings its manual or searching on the Internet.
+\begin{exercisebox}{{Read, Write, Execute}}
+    The read, write and execute permissions do different things, depending on
+    whether they are set for directories or for files. Find out what they mean
+    for files and directorues by playing around with the \texttt{chmod}
+    command, readings its manual or searching on the Internet.
 \end{exercisebox}
-%
-Here are other commands that are frequently used for finding displaying about files:
+
+Here are other commands that are frequently used for finding displaying about
+files:
 
 \begin{table}[H]
     \centering
@@ -283,27 +287,54 @@ Here are other commands that are frequently used for finding displaying about fi
     \end{tcolorbox}%
     \label{tab5}
 \end{table}
-%
-In the next exercise we are going to read some text from the standard input (also called \texttt{stdin}). Reading from \texttt{stdin} means you can just type text into the console. When you are done, hit \keys{Enter} to enter a newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file character in Unix-like systems. It signals to the command that it the input has finished. You can even use this keyshortcut to close your terminal.
+
+In the next exercise we are going to read some text from the standard input
+(also called \texttt{stdin}). Reading from \texttt{stdin} means you can just
+type text into the console. When you are done, hit \keys{Enter} to enter a
+newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file
+character in Unix-like systems. It signals to the command that it the input has
+finished. You can even use this keyshortcut to close your terminal.
 
 \begin{exercisebox}{Cat tricks}
-	Type the command \texttt{cat -}. This starts \texttt{cat} to read from \texttt{stdin}. Enter some text and observe what happens when you press \keys{Enter}. \texttt{cat} will just keep reading until the end-of-file character, so you can enter multiple lines of text. When you are done, terminate the input as described above.
+    Type the command \texttt{cat -}. This starts \texttt{cat} to read from
+    \texttt{stdin}. Enter some text and observe what happens when you press
+    \keys{Enter}. \texttt{cat} will just keep reading until the end-of-file
+    character, so you can enter multiple lines of text. When you are done,
+    terminate the input as described above.
 \end{exercisebox}
 
 \begin{exercisebox}{Counting words}
-	Sometimes you want to know the length of some text. First, read the manual of \texttt{wc} to find out how you can read from standard input. Copy a line of text of your choice from the \texttt{wc} manual, then use the \texttt{wc} syntax that you looked up to read from standard input. Paste the text and terminate the input as before.
+    Sometimes you want to know the length of some text. First, read the manual
+    of \texttt{wc} to find out how you can read from standard input. Copy a
+    line of text of your choice from the \texttt{wc} manual, then use the
+    \texttt{wc} syntax that you looked up to read from standard input. Paste
+    the text and terminate the input as before.
 \end{exercisebox}
 
-\hintbox{Copying and pasting in the console is done with \keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v}.}
+\hintbox{%
+Copying and pasting in the console is done with
+\keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v}.}
 
 \begin{exercisebox}{Hey! Listen!}
-	Read the \texttt{ln} manual to find out about symbolic links. Symbolic links are like shortcuts in Windows and OS X and are often more useful than hard links (their counterpart). Create a link from your home directory to a directory you use frequently.
+    Read the \texttt{ln} manual to find out about symbolic links. Symbolic
+    links are like shortcuts in Windows and OS X and are often more useful than
+    hard links (their counterpart). Create a link from your home directory to a
+    directory you use frequently.
 \end{exercisebox}
 
-Lastly, two commands that are loosely related to files are \texttt{df} and \texttt{du}. These commands are used to find out how much space files take up. \texttt{df} shows coarse-grained disk usage as reported by the file system. \texttt{du} counts the disk usage of individual files and directories.
+Lastly, two commands that are loosely related to files are \texttt{df} and
+\texttt{du}. These commands are used to find out how much space files take up.
+\texttt{df} shows coarse-grained disk usage as reported by the file system.
+\texttt{du} counts the disk usage of individual files and directories.
 
 \begin{exercisebox}{Reporting disk usage}
-	When you run \texttt{df} and \texttt{du}, the sizes of files are reported in multiples of blocks. How large a block is depends on your file system but typically they are between 512 bytes and 1 kilobyte. This means that you would have to multiply by this size the true size, in bytes. Find out how to make the output of \texttt{df} and \texttt{du} more readable for humans by looking at their options in the manual (hint: the option is the same for both tools).
+    When you run \texttt{df} and \texttt{du}, the sizes of files are reported
+    in multiples of blocks. How large a block is depends on your file system
+    but typically they are between 512 bytes and 1 kilobyte. This means that
+    you would have to multiply by this size the true size, in bytes. Find out
+    how to make the output of \texttt{df} and \texttt{du} more readable for
+    humans by looking at their options in the manual (hint: the option is the
+    same for both tools).
 \end{exercisebox}
 
 \section{Leveraging the command line}
@@ -321,7 +352,7 @@ matches any \emph{single} character, or \texttt{\string{*.jpg,*.png\string}},
 which is a list that matches both \texttt{.jpg} and \texttt{.png} files. To
 learn more, you can have a look at \texttt{man 7 glob}.
 
-\begin{exercisebox}{Printing text, again}
+\begin{exercisebox}{{Printing text, again}}
     Ouput all \texttt{.txt} files in \texttt{notes/} to the terminal in
     a single command. The output will tell you if you did it correctly.
 \end{exercisebox}
@@ -335,11 +366,11 @@ learn more, you can have a look at \texttt{man 7 glob}.
 \subsection{Pipes}
 
 Pipes are useful to connect multiple commands together. One of the design
-principles of Unix was ``do one thing, and do it well''. This means, tools should
-be simple and powerful in their specific domain, but there should also be a
-mechanism to combine multiple programs in an easy way. This mechanism is the
-\emph{pipe}, the \texttt{|} symbol. It allows you to connect the output of one
-program to the input of another program.
+principles of Unix was ``do one thing, and do it well''. This means, tools
+should be simple and powerful in their specific domain, but there should also
+be a mechanism to combine multiple programs in an easy way. This mechanism is
+the \emph{pipe}, the \texttt{|} symbol. It allows you to connect the output of
+one program to the input of another program.
 
 For example, we can combine \texttt{du} and \texttt{sort} to work together.
 \texttt{du} analyses the usage of disk space, and sort just sorts lines
@@ -413,7 +444,8 @@ Here is an overview of options for \texttt{find} that are useful to know.
 	    \texttt{-size} & Condition on the size of a file. \\
         \texttt{-atime} & Condition on when file was last accessed. \\
         \texttt{-mtime} & Condition on when file was last modified. \\
-        \texttt{-type} & Specifies type of file (directory, regular file \ldots). \\
+        \texttt{-type} & Specifies type of file (directory, regular file
+        \ldots). \\
     \end{tcolorbox}%
     \label{tab6}
 \end{table}
@@ -432,18 +464,18 @@ While working with many files in different folders, you can find yourself
 losing track of what is in what file. To quickly find something in one of many
 files, you can use \texttt{grep}. Grep is a tool for searching a body of text
 for a specific pattern. Those patterns are specified with a syntax called
-``Regular Expressions'' or regex(es).
+``Regular Expressions'' or regexes.
 
 Regexes can easily become \emph{very} complicated (there are entire books on
 this topic).  We'll have a look at the very basics here. Regexes are comprised
-of a string of characters, e.g. \texttt{"foo.bar[0-9]"}. Let's take that regex
+of a string of characters, e.g. \texttt{foo.bar[0-9]}. Let's take that regex
 apart:
 
 \begin{itemize}
     \setlength\itemsep{-9pt}
-    \item{\makebox[1.5cm]{\: \texttt{foo\hfill}} Matches the literal word "foo".}
+    \item{\makebox[1.5cm]{\: \texttt{foo\hfill}} Matches the literal word ``foo''.}
     \item{\makebox[1.5cm]{\: \texttt{.\hfill}} Matches any single character.}
-    \item{\makebox[1.5cm]{\: \texttt{bar\hfill}} Matches the literal word "bar".}
+    \item{\makebox[1.5cm]{\: \texttt{bar\hfill}} Matches the literal word ``bar''.}
     \item{\makebox[1.5cm]{\: \texttt{[0-9]\hfill}} Matches a single digit between 0 and 9.}
 \end{itemize}
 
@@ -466,7 +498,7 @@ So how do we try that on the command line? Simple, to test out \texttt{grep},
 we can use \texttt{echo} to pipe a string into grep to match. Like this:
 
 \begin{cmdbox}
-    \texttt{echo foo1bar2 | grep 'foo.bar[0-9]'}
+    \texttt{echo foo1bar2 | grep foo.bar[0-9]}
 \end{cmdbox}
 
 This should output \texttt{foo1bar2}, because grep outputs all lines from its
@@ -542,7 +574,7 @@ These can also be combined, like so: \texttt{grep -rnoh PATTERN FILE}.
             Matches on a string if the preceding expression appears between
             \texttt{<num1>} and \texttt{<num2>} times (inclusive). \\
     \end{tcolorbox}%
-    \label{tabgrepopts}
+    \label{tabgreplarge}
 \end{table}
 
 \paragraph{Note} When using the characters \texttt{|, +, ?} with their regex
@@ -621,13 +653,23 @@ clients that want to open an SSH session.
 
 \section{Jobs \& Processes}
 
-Jobs are groups processes that are running in the current shell. Usually, a job only consists of one process but sometimes a job is a process \emph{pipeline} consisting of multiple jobs, such as \texttt{echo "Hello" | cat -}. Read the \texttt{JOB CONTROL} section of the \texttt{bash} manual if you want to study the details.
+Jobs are groups processes that are running in the current shell. Usually, a job
+only consists of one process but sometimes a job is a process \emph{pipeline}
+consisting of multiple jobs, such as \texttt{echo "Hello" | cat -}. Read the
+\texttt{JOB CONTROL} section of the \texttt{bash} manual if you want to study
+the details.
 
-Knowing how to control jobs is essential if you want to be able to simultaneously run multiple processes from the same shell.
+Knowing how to control jobs is essential if you want to be able to
+simultaneously run multiple processes from the same shell.
 
 \subsection{Job control}
 
-Jobs can be put into background, started in background, brought to foreground and killed. We say a job is running in the background when it is currently running but not blocking the shell. In other words, when a job is running in the background, you can still use your shell normally (although the job might produce output that will get displayed on your terminal which can be quite annoying).
+Jobs can be put into background, started in background, brought to foreground
+and killed. We say a job is running in the background when it is currently
+running but not blocking the shell. In other words, when a job is running in
+the background, you can still use your shell normally (although the job might
+produce output that will get displayed on your terminal which can be quite
+annoying).
 
 \begin{table}[H]
     \centering
@@ -643,10 +685,15 @@ Jobs can be put into background, started in background, brought to foreground an
 	    \texttt{fg} & Bring a job into the foreground\\
 	    \texttt{bg} & Bring a job into the background\\
     \end{tcolorbox}
-    \label{tab7}
+    \label{tabjobcmds}
 \end{table}
-%
-Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a job in the foreground and \keys{\ctrl}+\keys{z} to suspend a job in the foreground. Suspended jobs are paused until they are resumed with either \texttt{fg} or \texttt{bg}. Note that processes can choose to overwrite these shortcuts so they are not guaranteed to work. If they don't work, we can always use more drastic measures...
+
+Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a
+job in the foreground and \keys{\ctrl}+\keys{z} to suspend a job in the
+foreground. Suspended jobs are paused until they are resumed with either
+\texttt{fg} or \texttt{bg}. Note that processes can choose to overwrite these
+shortcuts so they are not guaranteed to work. If they don't work, we can always
+use more drastic measures \ldots
 
 \begin{table}[H]
     \centering
@@ -659,7 +706,8 @@ Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a jo
         title={Controlling jobs}]
 		\texttt{\keys{\ctrl}+\keys{z}} & Suspend current job. Processes may ignore this.\\
 		\texttt{\keys{\ctrl}+\keys{c}} & Kill current job. Processes may ignore this.\\
-	    \texttt{kill \%N} & Kill job, where N is the number of the job as listed in \texttt{jobs}. Processes may \emph{still} ignore this.\\
+	    \texttt{kill \%N} & Kill job, where N is the number of the job as
+        listed in \texttt{jobs}.Processes may \emph{still} ignore this.\\
 	    \texttt{kill -9 \%N} & Kill job with number N for sure.\\
     \end{tcolorbox}
     \label{tab8}
@@ -667,7 +715,10 @@ Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a jo
 
 \subsection{Processes}
 
-Processes are system-wide. Each process has a unique process ID, also called PID for short. You can think of processes as "separate units of computing". For example, an \texttt{echo} command spawns a new process that is separated from the shell process that you are in (which is typically \texttt{bash}).
+Processes are system-wide. Each process has a unique process ID, also called
+PID for short. You can think of processes as ``separate units of computing''. For
+example, an \texttt{echo} command spawns a new process that is separated from
+the shell process that you are in (which is typically \texttt{bash}).
 
 \begin{table}[H]
     \centering
@@ -678,25 +729,46 @@ Processes are system-wide. Each process has a unique process ID, also called PID
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
         title={Controlling processes}]
-	    \texttt{top} & Display info about all currently running processes. Quit with \keys{q}\\
-	    \texttt{htop} & A more modern version of \texttt{top}. It is not installed by default on most distros but you can install it with your package manager\\
-	    \texttt{kill \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This is the nice way of killing a process because it allows the process to react to the killing and perform some cleanup\\
-	    \texttt{kill -9 \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This kills the process instantly\\
-	    \texttt{pkill \texttt{PATTERN}} & Like PID but kills processes whose names match a pattern instead\\
+        \texttt{top} & Display info about all currently running processes. Quit
+        with \keys{q}\\
+        \texttt{htop} & A more modern version of \texttt{top}. It is not
+        installed by default on most distros but you can install it with your
+        package manager\\
+        \texttt{kill \texttt{PID}} & Send a termination signal to the process
+        \texttt{PID}. This is the nice way of killing a process because it
+        allows the process to react to the killing and perform some cleanup\\
+        \texttt{kill -9 \texttt{PID}} & Send a termination signal to the
+        process \texttt{PID}. This kills the process instantly\\
+        \texttt{pkill \texttt{PATTERN}} & Like PID but kills processes whose
+        names match a pattern instead\\
 	    \texttt{pkill -9 \texttt{PATTERN}} & Similar to \texttt{kill -9}\\
-	    \texttt{ps} & Powerful utility to display a lot of information about specific processes\\
-    \end{tcolorbox}
+        \texttt{ps} & Powerful utility to display a lot of information about
+        specific processes\\
+    \end{tcolorbox}%
     \label{tab9}
 \end{table}
 
-\texttt{kill} and \texttt{pkill} actually send so-called signals to processes. There are many signals that all do different things. When you call \texttt{kill PID}, the signal \texttt{15} is sent to the process \texttt{PID}. This signal is called the \texttt{SIGTERM} signal and is used to \emph{ask} a process to terminate. When we write \texttt{kill -9 PID}, we are actually sending the signal \texttt{9} which is also known as \texttt{SIGKILL} and kills a process instantly. Read \texttt{man 7 signal} if you want to know more about signals.
+\texttt{kill} and \texttt{pkill} actually send so-called signals to processes.
+There are many signals that all do different things. When you call \texttt{kill
+PID}, the signal \texttt{15} is sent to the process \texttt{PID}. This signal
+is called the \texttt{SIGTERM} signal and is used to \emph{ask} a process to
+terminate. When we write \texttt{kill -9 PID}, we are actually sending the
+signal \texttt{9} which is also known as \texttt{SIGKILL} and kills a process
+instantly. Read \texttt{man 7 signal} if you want to know more about signals.
 
 
 \begin{exercisebox}{Killed in their sleep}
-	Startasd a new process by typing \texttt{sleep 1000} in your shell. Open another shell. Use \texttt{top}, \texttt{htop} or \texttt{ps} to figure out the PID of the \texttt{sleep} process. Kill it.
+    Start a new process by typing \texttt{sleep 1000} in your shell. Open
+    another shell. Use \texttt{top}, \texttt{htop} or \texttt{ps} to figure out
+    the PID of the \texttt{sleep} process. Kill it.
 \end{exercisebox}
 
 \begin{exercisebox}{A job for kill}
-	\texttt{kill} also works on jobs. Start \texttt{sleep 1000} in the background (or start it in the foreground, suspend it, then bring it to the background). Then type \texttt{kill \%N} where \texttt{N} is the job's number (probably \texttt{1}). Check the output of the \texttt{jobs} command and confirm that the job is not displayed anymore.
+    \texttt{kill} also works on jobs. Start \texttt{sleep 1000} in the
+    background (or start it in the foreground, suspend it, then bring it to the
+    background). Then type \texttt{kill \%N} where \texttt{N} is the job's
+    number (probably \texttt{1}). Check the output of the \texttt{jobs} command
+    and confirm that the job is not displayed anymore.
 \end{exercisebox}
+
 \end{document}
