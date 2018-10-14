@@ -108,11 +108,11 @@ a graphical program. Below are the most important commands.
         title={Commands for navigating directories}]
         \textbf{Command} & \textbf{Description} \\
         \texttt{pwd} & Display the current working directory. \\
-        \texttt{tree \$dir} & Get a visualization of the directory tree under
-            the current working directory. \\
-        \texttt{ls \$dir} & List all files and directories in the current
+        \texttt{tree DIR} & Get a visualization of the directory tree under
+	    \texttt{DIR}. \\
+        \texttt{ls DIR} & List all files and directories in the current
             working directory. \\
-        \texttt{cd \$dir} & Change the current working directory to the given
+        \texttt{cd DIR} & Change the current working directory to the given
             directory. \\
     \end{tcolorbox}%
     \label{tab1}
@@ -140,15 +140,15 @@ command line.
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
         title={Commands for modifying directories}]
         \textbf{Command} & \textbf{Description} \\
-        \texttt{mkdir \$dir} & Create a new directory with the given name. \\
-        \texttt{rmdir \$dir} & Remove a directory. Will not work with
+        \texttt{mkdir DIR} & Create a new directory with the given name. \\
+        \texttt{rmdir DIR} & Remove a directory. Will not work with
             non-empty directories. \\
-        \texttt{rm -r \$dir} &  Remove a directory and its contents.
+        \texttt{rm -r DIR} &  Remove a directory and its contents.
             {\color{red}Attention! There is no trashcan on the command line!
             Files and directories will be deleted irrevocably.} \\
-        \texttt{cp -r \$source \$target} &  Copy a source directory
+        \texttt{cp -r SOURCE TARGET} &  Copy a source directory
             (recursively with all its contents) to a target. \\
-        \texttt{mv \$source \$target} & Move a file or directory.
+        \texttt{mv SOURCE TARGET} & Move a file or directory.
             Also used to rename files/directories. \\
     \end{tcolorbox}%
     \label{tab2}
@@ -175,10 +175,10 @@ options:
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
         title={Commands for viewing files}]
         \textbf{Command} & \textbf{Description} \\
-        \texttt{cat \$file} & Output a file to the terminal. \\
-        \texttt{head \$file} & Output the first couple of lines to the terminal. \\
-        \texttt{tail \$file} & Output the last couple of lines to the terminal. \\
-        \texttt{less \$file} & Browse a file in a visual viewer. \\
+        \texttt{cat FILE} & Output a file to the terminal. \\
+        \texttt{head FILE} & Output the first couple of lines to the terminal. \\
+        \texttt{tail FILE} & Output the last couple of lines to the terminal. \\
+        \texttt{less FILE} & Browse a file in a visual viewer. \\
     \end{tcolorbox}%
     \label{tab3}
 \end{table}
@@ -275,10 +275,9 @@ Here are other commands that are frequently used for finding displaying about fi
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
         title={Commands for getting info about files}]
-	    \texttt{wc \$file} & Display line, word, and character count of a file \\
-	    \texttt{diff \$file1 \$file2} & Show differences between files\\
-	    \texttt{ln \$target \$link\_name} & Create a link\\
-	    \texttt{du \$file} & Show file size ("disk usage") in blocks\\
+	    \texttt{wc FILE} & Display line, word, and character count of a file \\
+	    \texttt{diff FILE1 FILE2} & Show differences between files\\
+	    \texttt{ln TARGET LINK\_NAME} & Create a link\\
     \end{tcolorbox}%
     \label{tab5}
 \end{table}
@@ -297,6 +296,12 @@ In the next exercise we are going to read some text from the standard input (als
 
 \begin{exercisebox}{Hey! Listen!}
 	Read the \texttt{ln} manual to find out about symbolic links. Symbolic links are like shortcuts in Windows and OS X and are often more useful than hard links (their counterpart). Create a link from your home directory to a directory you use frequently.
+\end{exercisebox}
+
+Lastly, two commands that are loosely related to files are \texttt{df} and \texttt{du}. These commands are used to find out how much space files take up. \texttt{df} shows coarse-grained disk usage as reported by the file system. \texttt{du} counts the disk usage of individual files and directories.
+
+\begin{exercisebox}{Reporting disk usage}
+	When you run \texttt{df} and \texttt{du}, the sizes of files are reported in multiples of blocks. How large a block is depends on your file system but typically they are between 512 bytes and 1 kilobyte. This means that you would have to multiply by this size the true size, in bytes. Find out how to make the output of \texttt{df} and \texttt{du} more readable for humans by looking at their options in the manual (hint: the option is the same for both tools).
 \end{exercisebox}
 
 \section{Leveraging the command line}
@@ -440,8 +445,8 @@ Processes are system-wide. Each process has a unique process ID, also called PID
 	    \texttt{htop} & A more modern version of \texttt{top}. It is not installed by default on most distros but you can install it with your package manager\\
 	    \texttt{kill \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This is the nice way of killing a process because it allows the process to react to the killing and perform some cleanup\\
 	    \texttt{kill -9 \texttt{PID}} & Send a termination signal to the process \texttt{PID}. This kills the process instantly\\
-	    \texttt{pkill \texttt{pattern}} & Like PID but kills processes whose names match a \texttt{pattern} instead\\
-	    \texttt{pkill -9 \texttt{pattern}} & Similar to \texttt{kill -9}\\
+	    \texttt{pkill \texttt{PATTERN}} & Like PID but kills processes whose names match a pattern instead\\
+	    \texttt{pkill -9 \texttt{PATTERN}} & Similar to \texttt{kill -9}\\
 	    \texttt{ps} & Powerful utility to display a lot of information about specific processes\\
     \end{tcolorbox}
     \label{tab9}
