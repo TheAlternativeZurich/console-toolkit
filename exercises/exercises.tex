@@ -235,13 +235,6 @@ great if you want to look at large bodies of text because, unlike \texttt{cat},
 it has a built-in scroll function. Once you are done looking at the file, you
 can quit with \keys{q}.
 
-\begin{exercisebox}{Less is more}
-    There is also a \texttt{more} command. It is older than \texttt{less} and
-    thus less frequently used. Find a large file (or create onw) and look at it
-    with \texttt{less FILE}. How does it differ from \texttt{more}? Read the
-    manuals if you're confused.
-\end{exercisebox}
-
 \subsection{Permissions}
 
 We will now look at two commands to fiddle with permissions.
@@ -292,8 +285,12 @@ Here are other commands that are frequently used for finding displaying about fi
 %
 In the next exercise we are going to read some text from the standard input (also called \texttt{stdin}). Reading from \texttt{stdin} means you can just type text into the console. When you are done, hit \keys{Enter} to enter a newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file character in Unix-like systems. It signals to the command that it the input has finished. You can even use this keyshortcut to close your terminal.
 
+\begin{exercisebox}{Cat tricks}
+	Type the command \texttt{cat -}. This starts \texttt{cat} to read from \texttt{stdin}. Enter some text and observe what happens when you press \keys{Enter}. \texttt{cat} will just keep reading until the end-of-file character, so you can enter multiple lines of text. When you are done, terminate the input as described above.
+\end{exercisebox}
+
 \begin{exercisebox}{Counting words}
-	Sometimes you just want to know the length of some text you copy-pasted from the Internet. Read the manual of \texttt{wc} to find out how you can read from standard input. Then use that command to count the length of some arbitrary text you want to paste into the console.
+	Sometimes you want to know the length of some text. First, read the manual of \texttt{wc} to find out how you can read from standard input. Copy a line of text of your choice from the \texttt{wc} manual, then use the \texttt{wc} syntax that you looked up to read from standard input. Paste the text and terminate the input as before.
 \end{exercisebox}
 
 \hintbox{Copying and pasting in the console is done with \keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v}.}
