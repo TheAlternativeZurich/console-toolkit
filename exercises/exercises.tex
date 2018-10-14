@@ -55,11 +55,11 @@ now is the time to do so.
 
 \subsection{Running a command}
 
-To run a command, you just type it into the console and hit enter to run it.
-Most useful commands require some arguments. Arguments are given after the name
-of the command, separated by spaces. There is also so-called \emph{flags},
-which set some options to alter the behaviour of a command. They are of the
-form \texttt{-x} (single letter form) or \texttt{--long-option} (long format).
+To run a command, you just type it into the console and hit enter.  Most useful
+commands require some arguments. Arguments are given after the name of the
+command, separated by spaces. There are also so-called \emph{flags}, which set
+some options to alter the behaviour of a command. They have the form
+\texttt{-x} (single letter form) or \texttt{--long-option} (long format).
 
 An example of a more involved command:
 
@@ -157,8 +157,8 @@ command line.
 
 \begin{exercisebox}{Creating your first directory}
     Create a directory for the following exercises (you can call it
-    \texttt{console-toolkit}).  Change into that directory and create a file
-    call \texttt{notes}. Then move the exercise file directory you downloaded
+    \texttt{console-toolkit}). Change into that directory and create a file
+    called \texttt{notes}. Then move the exercise file directory you downloaded
     in task 2.1 into your newly created directory.
 \end{exercisebox}
 
@@ -189,9 +189,11 @@ options:
     last three lines of \texttt{dmesg\_log} (in the exercise files).
 \end{exercisebox}
 
+\hintbox{\texttt{dmesg} is tool to view the log output of your kernel.}
+
 \subsection{Console tips \& tricks}
 
-There are many little things that can make your life using the terminal a
+There are many small things that can make your life when using the terminal
 little bit easier.  Following is a table with the most important keyboard
 shortcuts you can use to speed up your workflow.
 
@@ -203,7 +205,7 @@ shortcuts you can use to speed up your workflow.
         fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
-        title={Commands for viewing files}]
+        title={Terminal keyboard shortcuts}]
         \keys{\ctrl}+\keys{w} & Delete one word backwards. \\
         \keys{\ctrl}+\keys{u} & Delete the entire line. \\
         \keys{\ctrl}+\keys{l} & Clear the terminal. \\
@@ -225,24 +227,23 @@ files. If you check the manual, you will see that it can also change certain
 file timestamps (access and modification times).
 
 \begin{exercisebox}{The magic touch}
-    Switch to your home directory. Type \texttt{touch file}. A new file should
-    have been created. Confirm that this is the case.
+    Switch to your home directory. Execute \texttt{touch file}. A new file
+    should have been created. Confirm that this is the case.
 \end{exercisebox}
 %
-We already saw \texttt{cat} in the previous section. It is time to introduce
-another important command to look at files: \texttt{less}. This command is
-great if you want to look at large bodies of text because, unlike \texttt{cat},
-it has a built-in scroll function. Once you are done looking at the file, you
-can quit with \keys{q}.
+We already saw \texttt{cat} in the previous section. Another tool to look at
+files is \texttt{less}. This command is great if you want to look at large
+bodies of text because unlike \texttt{cat}, it has a built-in scroll function.
+Once you are done looking at the file, you can quit with \keys{q}.
 
 \subsection{Permissions}
 
-We will now look at two commands to fiddle with permissions.
+We will now look at two commands to manage permissions.
 
 \texttt{chown} stands for ``change owner''. It is used to change the owner of a
 given file. It can also change the group ownership.
 
-\begin{exercisebox}{Get off my property}
+\begin{exercisebox}{Get off my lawn}
     Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to
     change its ownership to the \texttt{root} user (you will probably need
     \texttt{sudo} for this). Try deleting it. Then change the ownership back to
@@ -253,22 +254,25 @@ A very similar command is \texttt{chmod}. \texttt{chmod} stands for ``change
 file mode bits'' and controls the following permissions on any given file:
 
 \begin{itemize}
+    \setlength\itemsep{-9pt}
 	\item Read: Who can see the file data.
 	\item Write: Who can modify the file.
 	\item Execute: Who is allowed to run the file (like a program or a script)
 \end{itemize}
 
-\hintbox{Permissions can be read using \texttt{ls -l}.}
+\hintbox{Permissions can be viewed using \texttt{ls -l}.}
 
 \begin{exercisebox}{{Read, Write, Execute}}
     The read, write and execute permissions do different things, depending on
     whether they are set for directories or for files. Find out what they mean
     for files and directorues by playing around with the \texttt{chmod}
-    command, readings its manual or searching on the Internet.
+    command, readings its manual or searching on the internet.
 \end{exercisebox}
 
-Here are other commands that are frequently used for finding displaying about
-files:
+\subsection{File tools}
+
+There are a number of other commands that are frequently used to get
+information on files:
 
 \begin{table}[H]
     \centering
@@ -281,9 +285,10 @@ files:
         title={Commands for getting information about files}]
         \textbf{Command} & \textbf{Description} \\
 	    \texttt{wc \$file} & Display line, word, and character count of a file \\
-	    \texttt{diff \$file1 \$file2} & Show differences between files\\
-	    \texttt{ln \$target \$link\_name} & Create a link\\
-	    \texttt{du \$file} & Show file size ("disk usage") in blocks\\
+        \texttt{diff \$file1 \$file2} & Show differences between files \\
+	    \texttt{ln \$target \$link\_name} & Create a link \\
+        \texttt{du \$file} & Estimate file space usage \\
+        \texttt{df} & Report file system disk usage \\
     \end{tcolorbox}%
     \label{tab5}
 \end{table}
@@ -293,7 +298,7 @@ In the next exercise we are going to read some text from the standard input
 type text into the console. When you are done, hit \keys{Enter} to enter a
 newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file
 character in Unix-like systems. It signals to the command that it the input has
-finished. You can even use this keyshortcut to close your terminal.
+finished. You can even use this key shortcut to close your terminal.
 
 \begin{exercisebox}{Cat tricks}
     Type the command \texttt{cat -}. This starts \texttt{cat} to read from
@@ -304,22 +309,36 @@ finished. You can even use this keyshortcut to close your terminal.
 \end{exercisebox}
 
 \begin{exercisebox}{Counting words}
-    Sometimes you want to know the length of some text. First, read the manual
-    of \texttt{wc} to find out how you can read from standard input. Copy a
-    line of text of your choice from the \texttt{wc} manual, then use the
+    Sometimes you might want to know the length of some text. First, consult
+    \texttt{wc}'s manual to find out how you can read from standard input. Copy
+    a line of text of your choice from the \texttt{wc} manual, then use the
     \texttt{wc} syntax that you looked up to read from standard input. Paste
     the text and terminate the input as before.
 \end{exercisebox}
 
 \hintbox{%
-Copying and pasting in the console is done with
-\keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v}.}
+Copying and pasting in the console usually works with
+\keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v},
+this depends on the terminal though.}
 
-\begin{exercisebox}{Hey! Listen!}
-    Read the \texttt{ln} manual to find out about symbolic links. Symbolic
-    links are like shortcuts in Windows and OS X and are often more useful than
-    hard links (their counterpart). Create a link from your home directory to a
-    directory you use frequently.
+\paragraph{Hardlink}
+A hardlink is a pointer to a specific, physical location on a hard disk. If the
+file name of the file that is linked to changes, the link still works. However,
+if the file is replaced by a different file with the same name, the hardlink
+will now \emph{not} point to the new file!  It will still point to the location
+of the old file.
+
+\paragraph{Symlink}
+A symlink (short for symbolic link) points to a file name, to an actual file
+path. If the data behind the file name is changed, the symbolic link will then
+point to this new file, as long as the name stays the same. This is a higher
+level concept than a hardlink, as it operates above the concept of file names.
+Most of the time, a symlink is preferrable to a hardlink.
+
+\begin{exercisebox}{Symlinks}
+    Have a look at the \texttt{ln} manual to find out how to create a symbolic
+    link. Then create a link in your home directory to a directory you use
+    frequently.
 \end{exercisebox}
 
 Lastly, two commands that are loosely related to files are \texttt{df} and
@@ -329,12 +348,12 @@ Lastly, two commands that are loosely related to files are \texttt{df} and
 
 \begin{exercisebox}{Reporting disk usage}
     When you run \texttt{df} and \texttt{du}, the sizes of files are reported
-    in multiples of blocks. How large a block is depends on your file system
-    but typically they are between 512 bytes and 1 kilobyte. This means that
-    you would have to multiply by this size the true size, in bytes. Find out
-    how to make the output of \texttt{df} and \texttt{du} more readable for
-    humans by looking at their options in the manual (hint: the option is the
-    same for both tools).
+    in multiples of blocks. The size of a block depends on your file system,
+    but typically is between 512 bytes and 1 kilobyte. This means that you
+    would have to multiply by this size the true size, in bytes. Find out how
+    to make the output of \texttt{df} and \texttt{du} more readable for humans
+    by looking at their options in the manual (hint: the option is the same for
+    both tools).
 \end{exercisebox}
 
 \section{Leveraging the command line}
@@ -360,7 +379,7 @@ learn more, you can have a look at \texttt{man 7 glob}.
 \begin{exercisebox}{Managing cat pictures}
     Create a new directory called \texttt{cats}. Copy all cat pictures in
     \texttt{pictures/} (in the exercise files) to your new \texttt{cats}
-    directory.
+    directory, with a single command.
 \end{exercisebox}
 
 \subsection{Pipes}
@@ -384,7 +403,7 @@ directory uses the most space:
 Here the \texttt{*} globbing pattern stands for ``every file in the current
 directory''.
 
-\begin{exercisebox}
+\begin{exercisebox}{Counting lines in multiple files}
     \texttt{wc} (word count) can be used to count the number of lines in a file
     (\texttt{-l} flag). Use \texttt{cat} to output all files in the
     \texttt{notes} directory (exercise files) at the same time and connect it
@@ -394,13 +413,12 @@ directory''.
 \subsection{Find}
 
 Looking for specific files on your system is a task that one has to do fairly
-regularly. Two commands that are among the absolute best in looking for files
-with certain properties are \texttt{find} and \texttt{grep}. In this section,
-we cover \texttt{find}.  As a rule of thumb, \texttt{find} is best used when
-you know that your file has certain metadata: Maybe you know approximately when
-you have created the file, when you last looked at it, how large it is etc. In
-contrast, \texttt{grep} is usually used when you want to look at \emph{the
-content} of a file.
+regularly. Two very popular tool for finding files with certain properties are
+\texttt{find} and \texttt{grep}. In this section, we cover \texttt{find}.  As a
+rule of thumb, \texttt{find} is best used when you know that your file has
+certain metadata: Maybe you know approximately when you have created the file,
+when you last looked at it, how large it is etc. In contrast, \texttt{grep} is
+usually used when you want to look at \emph{the content} of a file.
 
 \texttt{find} works by essentially filtering all files through a chain of
 conditions, given by flags. Working with \texttt{find} is
@@ -438,7 +456,7 @@ Here is an overview of options for \texttt{find} that are useful to know.
         fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
-        title={Commands for getting info about files}]
+        title={Useful find flags}]
         \textbf{Flag} & \textbf{Description} \\
         \texttt{-name} & Matches the name of a file. \\
 	    \texttt{-size} & Condition on the size of a file. \\
@@ -468,8 +486,8 @@ for a specific pattern. Those patterns are specified with a syntax called
 
 Regexes can easily become \emph{very} complicated (there are entire books on
 this topic).  We'll have a look at the very basics here. Regexes are comprised
-of a string of characters, e.g. \texttt{foo.bar[0-9]}. Let's take that regex
-apart:
+of a string of characters, e.g. \texttt{foo.bar[0-9]}. Let's look at it in more
+detail:
 
 \begin{itemize}
     \setlength\itemsep{-9pt}
@@ -490,8 +508,8 @@ strings:
     \item \texttt{foo1bar2}
 \end{itemize}
 
-Another important thing to note is that regular expressions don't have to match
-the entire string. So the example regex would also match on
+An important thing to note is that regular expressions don't have to match the
+entire string. So the example regex would also match on
 \texttt{XXXXfoo1bar2XXXX}, because \texttt{foo1bar2} is part of that string.
 
 So how do we try that on the command line? Simple, to test out \texttt{grep},
@@ -515,7 +533,7 @@ These can also be combined, like so: \texttt{grep -rnoh PATTERN FILE}.
         fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
-        title={Commands for getting info about files}]
+        title={Useful grep flags}]
         \textbf{Command} & \textbf{Description} \\
         \texttt{-r} & Recursively look at all files under the given directory. \\
         \texttt{-o} & Only print the matching strings, not the entire line. \\
@@ -557,16 +575,15 @@ These can also be combined, like so: \texttt{grep -rnoh PATTERN FILE}.
 
 		\textbf{Modifiers} & & \\
         \texttt{?} & \texttt{.?} &
-            The \texttt{?} means ``maybe'', meaning that the preceding expression
-            appears zero times or exactly once. The example would match on an
-            empty string or any string of length 1. \\
+            The preceding expression appears zero times or exactly once. The
+            example would match on an empty string or any string of length one. \\
         \texttt{*} & \texttt{.*} &
             The preceding expression appears zero, one or many times. The
             example would match on a string of arbitrary length, including an
             empty one.\\
         \texttt{+} & \texttt{.+} &
             The preceding expression appears one or many times. The example
-            matches on a string of arbitrary length greater than one.\\
+            matches on a string of any length greater than zero. \\
         \texttt{\string{<num>\string}} & \texttt{\string{3\string}} &
             Matches on a string if the preceding expression appears exactly
             \texttt{<num>} times. \\
@@ -600,7 +617,8 @@ computations on super computers, and even using graphical applications that are
 installed on a different computer. \texttt{scp} (secure copy) works just like
 \texttt{cp}, but allows you to copy files to and from remote machines.
 \texttt{scp} is based on the SSH protocol, so it works similiarly and the
-public key authentication in exercise 5.2 will automatically also apply to SCP.
+public key authentication in exercise 5.2 will automatically also apply to
+\texttt{scp}.
 
 \begin{table}[H]
     \centering
@@ -653,23 +671,23 @@ clients that want to open an SSH session.
 
 \section{Jobs \& Processes}
 
-Jobs are groups processes that are running in the current shell. Usually, a job
-only consists of one process but sometimes a job is a process \emph{pipeline}
-consisting of multiple jobs, such as \texttt{echo "Hello" | cat -}. Read the
-\texttt{JOB CONTROL} section of the \texttt{bash} manual if you want to study
-the details.
+Jobs are groups of processes that are running in the current shell. Often, a
+job only consists of one process but sometimes a job is a process
+\emph{pipeline} consisting of multiple jobs, such as
+\texttt{echo "Hello" | cat -}. Consult the \texttt{JOB CONTROL} section
+of the \texttt{bash} manual if you want to study the details.
 
 Knowing how to control jobs is essential if you want to be able to
 simultaneously run multiple processes from the same shell.
 
 \subsection{Job control}
 
-Jobs can be put into background, started in background, brought to foreground
-and killed. We say a job is running in the background when it is currently
-running but not blocking the shell. In other words, when a job is running in
-the background, you can still use your shell normally (although the job might
-produce output that will get displayed on your terminal which can be quite
-annoying).
+Jobs can be put into the background, started in the background, brought to the
+foreground and killed. We say a job is running in the background when it is
+currently running, but not blocking the shell. In other words, when a job is
+running in the background, you can still use your shell normally (although the
+job might produce output that will get displayed on your terminal which can be
+quite annoying).
 
 \begin{table}[H]
     \centering
@@ -688,13 +706,6 @@ annoying).
     \label{tabjobcmds}
 \end{table}
 
-Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a
-job in the foreground and \keys{\ctrl}+\keys{z} to suspend a job in the
-foreground. Suspended jobs are paused until they are resumed with either
-\texttt{fg} or \texttt{bg}. Note that processes can choose to overwrite these
-shortcuts so they are not guaranteed to work. If they don't work, we can always
-use more drastic measures \ldots
-
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -706,19 +717,27 @@ use more drastic measures \ldots
         title={Controlling jobs}]
 		\texttt{\keys{\ctrl}+\keys{z}} & Suspend current job. Processes may ignore this.\\
 		\texttt{\keys{\ctrl}+\keys{c}} & Kill current job. Processes may ignore this.\\
-	    \texttt{kill \%N} & Kill job, where N is the number of the job as
-        listed in \texttt{jobs}.Processes may \emph{still} ignore this.\\
-	    \texttt{kill -9 \%N} & Kill job with number N for sure.\\
+        \texttt{kill N} & Kill job, where N is its number as listed in
+        \texttt{jobs}.Processes may \emph{still} ignore this.\\
+	    \texttt{kill -9 N} & Kill job with number N for sure.\\
     \end{tcolorbox}
     \label{tab8}
 \end{table}
 
+You can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a job in the
+foreground and \keys{\ctrl}+\keys{z} to suspend a job in the foreground.
+Suspended jobs are paused until they are resumed with either \texttt{fg} or
+\texttt{bg}. Note that processes can choose to overwrite these shortcuts so
+they are not guaranteed to work. If they don't work, we can always use more
+drastic measures \ldots
+
 \subsection{Processes}
 
-Processes are system-wide. Each process has a unique process ID, also called
-PID for short. You can think of processes as ``separate units of computing''. For
-example, an \texttt{echo} command spawns a new process that is separated from
-the shell process that you are in (which is typically \texttt{bash}).
+Processes operate system-wide. Each process has a unique process ID, called the
+PID for short. You can think of processes as separate programs running
+independent of each other. For example, an \texttt{echo} command spawns a new
+process that is separated from the shell process that you are in (which is
+typically \texttt{bash}).
 
 \begin{table}[H]
     \centering
@@ -728,22 +747,23 @@ the shell process that you are in (which is typically \texttt{bash}).
         fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
-        title={Controlling processes}]
+        title={Managing}]
         \texttt{top} & Display info about all currently running processes. Quit
         with \keys{q}\\
-        \texttt{htop} & A more modern version of \texttt{top}. It is not
-        installed by default on most distros but you can install it with your
-        package manager\\
+        \texttt{htop} & A more modern equivalent of \texttt{top}. It is not
+        installed by default on most distributions, but can be installed it
+        with your package manager. \\
         \texttt{kill \texttt{PID}} & Send a termination signal to the process
-        \texttt{PID}. This is the nice way of killing a process because it
-        allows the process to react to the killing and perform some cleanup\\
-        \texttt{kill -9 \texttt{PID}} & Send a termination signal to the
-        process \texttt{PID}. This kills the process instantly\\
-        \texttt{pkill \texttt{PATTERN}} & Like PID but kills processes whose
-        names match a pattern instead\\
-	    \texttt{pkill -9 \texttt{PATTERN}} & Similar to \texttt{kill -9}\\
-        \texttt{ps} & Powerful utility to display a lot of information about
-        specific processes\\
+        \texttt{PID}. This is the preferred way to terminate a process, as it
+        allows it to exit normally and perform clean up. \\
+        \texttt{kill -9 \texttt{PID}} & Send a killing signal to the
+        process \texttt{PID}. The process is killed by the operating system
+        immediately. Useful for unresponsive processes. \\
+        \texttt{pkill \texttt{PATTERN}} & Like \texttt{kill}, but kills
+        processes whose names match a pattern instead. \\
+	    \texttt{pkill -9 \texttt{PATTERN}} & Send a kill signal instead. \\
+        \texttt{ps} & Utility to display information about processes. Most
+        commonly used as \texttt{ps aux}. \\
     \end{tcolorbox}%
     \label{tab9}
 \end{table}
@@ -766,9 +786,9 @@ instantly. Read \texttt{man 7 signal} if you want to know more about signals.
 \begin{exercisebox}{A job for kill}
     \texttt{kill} also works on jobs. Start \texttt{sleep 1000} in the
     background (or start it in the foreground, suspend it, then bring it to the
-    background). Then type \texttt{kill \%N} where \texttt{N} is the job's
-    number (probably \texttt{1}). Check the output of the \texttt{jobs} command
-    and confirm that the job is not displayed anymore.
+    background). Then type \texttt{kill N} where \texttt{N} is the job's number
+    (probably \texttt{1}). Check the output of the \texttt{jobs} command and
+    confirm that the job is not displayed anymore.
 \end{exercisebox}
 
 \end{document}
