@@ -56,10 +56,10 @@ now is the time to do so.
 \subsection{Running a command}
 
 To run a command, you just type it into the console and hit enter to run it.
-Most useful commands require some arguments. Arguments are given after the name of
-the command, separated by spaces. There is also so-called \emph{flags}, which
-set some options to alter the behaviour of a command. They are of the form
-\texttt{-x} (single letter form) or \texttt{--long-option} (long format).
+Most useful commands require some arguments. Arguments are given after the name
+of the command, separated by spaces. There is also so-called \emph{flags},
+which set some options to alter the behaviour of a command. They are of the
+form \texttt{-x} (single letter form) or \texttt{--long-option} (long format).
 
 An example of a more involved command:
 
@@ -89,7 +89,8 @@ instructions
 on how to use a command.
 
 \begin{exercisebox}{The help option}
-    Look at the help output of \texttt{ls}. What is the flag to see hidden files?
+    Look at the help output of \texttt{ls}. What is the flag to see hidden
+    files?
 \end{exercisebox}
 
 \subsection{Navigating directories}
@@ -144,7 +145,7 @@ command line.
         \texttt{rmdir DIR} & Remove a directory. Will not work with
             non-empty directories. \\
         \texttt{rm -r DIR} &  Remove a directory and its contents.
-            {\color{red}Attention! There is no trashcan on the command line!
+            {\color{exclamred}Attention! There is no trashcan on the command line!
             Files and directories will be deleted irrevocably.} \\
         \texttt{cp -r SOURCE TARGET} &  Copy a source directory
             (recursively with all its contents) to a target. \\
@@ -426,6 +427,134 @@ Here is an overview of options for \texttt{find} that are useful to know.
 
 \includegraphics[width=\textwidth]{img/regex_golf.png}
 {\footnotesize xkcd 1313, https://xkcd.com/1313/}
+
+While working with many files in different folders, you can find yourself
+losing track of what is in what file. To quickly find something in one of many
+files, you can use \texttt{grep}. Grep is a tool for searching a body of text
+for a specific pattern. Those patterns are specified with a syntax called
+``Regular Expressions'' or regex(es).
+
+Regexes can easily become \emph{very} complicated (there are entire books on
+this topic).  We'll have a look at the very basics here. Regexes are comprised
+of a string of characters, e.g. \texttt{"foo.bar[0-9]"}. Let's take that regex
+apart:
+
+\begin{itemize}
+    \setlength\itemsep{-9pt}
+    \item{\makebox[1.5cm]{\: \texttt{foo\hfill}} Matches the literal word "foo".}
+    \item{\makebox[1.5cm]{\: \texttt{.\hfill}} Matches any single character.}
+    \item{\makebox[1.5cm]{\: \texttt{bar\hfill}} Matches the literal word "bar".}
+    \item{\makebox[1.5cm]{\: \texttt{[0-9]\hfill}} Matches a single digit between 0 and 9.}
+\end{itemize}
+
+For example, this regex \texttt{foo.bar[0-9]} would match on all of these
+strings:
+
+\begin{itemize}
+    \setlength\itemsep{-9pt}
+    \item \texttt{foo\_bar1}
+    \item \texttt{fooobar9}
+    \item \texttt{foozbar5}
+    \item \texttt{foo1bar2}
+\end{itemize}
+
+Another important thing to note is that regular expressions don't have to match
+the entire string. So the example regex would also match on
+\texttt{XXXXfoo1bar2XXXX}, because \texttt{foo1bar2} is part of that string.
+
+So how do we try that on the command line? Simple, to test out \texttt{grep},
+we can use \texttt{echo} to pipe a string into grep to match. Like this:
+
+\begin{cmdbox}
+    \texttt{echo foo1bar2 | grep 'foo.bar[0-9]'}
+\end{cmdbox}
+
+This should output \texttt{foo1bar2}, because grep outputs all lines from its
+input that match the regex.
+
+There are a few command line options that you should know about \texttt{grep}.
+These can also be combined, like so: \texttt{grep -rnoh PATTERN FILE}.
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for getting info about files}]
+        \textbf{Command} & \textbf{Description} \\
+        \texttt{-r} & Recursively look at all files under the given directory. \\
+        \texttt{-o} & Only print the matching strings, not the entire line. \\
+        \texttt{-h} & Don't print the filename, just the matching string/line. \\
+        \texttt{-n} & Prefix the output with the linenumber where the match occured. \\
+    \end{tcolorbox}%
+    \label{tabgrepopts}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Regex building blocks}]
+        \textbf{Regex} & \textbf{Example} & \textbf{Description} \\
+
+		\textbf{Match Expressions} & & \\
+        \texttt{<character literal>} & \texttt{f} &
+            Matches the character \texttt{<character literal>}.
+            The example matches on \texttt{f}. \\
+        \texttt{.} & \texttt{.} & Matches any single character. \\
+        \texttt{[<char1>-<char2>]} & \texttt{[a-z]} &
+            Matches a single character in the range from \texttt{<char1>} to
+            \texttt{<char2>} (inclusive). The example matches on any lowercase
+            character. The character range can be specified multiple times,
+            like so: \texttt{[a-zA-Z0-9]}. This would match any lower- or
+            uppercase character or digit. \\
+        \texttt{[[:alnum:]]} & \texttt{[[:alnum:]]} &
+            Alphanumeric characters (letters and digits). \\
+        \texttt{[[:alpha:]]} & \texttt{[[:alpha:]]} & Letters. \\
+        \texttt{[[:digit:]]} & \texttt{[[:digit:]]} & Digits. \\
+        \texttt{[[:xdigit:]]} & \texttt{[[:xdigit:]]} & Hexadecimal digits. \\
+        \texttt{[[:blank:]]} & \texttt{[[:blank:]]} & Blank space (spaces and tabs). \\
+        \texttt{[[:word:]]} & \texttt{[[:word:]]} & Digits, letters and underscores. \\
+
+		\textbf{Modifiers} & & \\
+        \texttt{?} & \texttt{.?} &
+            The \texttt{?} means ``maybe'', meaning that the preceding expression
+            appears zero times or exactly once. The example would match on an
+            empty string or any string of length 1. \\
+        \texttt{*} & \texttt{.*} &
+            The preceding expression appears zero, one or many times. The
+            example would match on a string of arbitrary length, including an
+            empty one.\\
+        \texttt{+} & \texttt{.+} &
+            The preceding expression appears one or many times. The example
+            matches on a string of arbitrary length greater than one.\\
+        \texttt{\string{<num>\string}} & \texttt{\string{3\string}} &
+            Matches on a string if the preceding expression appears exactly
+            \texttt{<num>} times. \\
+        \texttt{\string{<num1>,<num2>\string}} & \texttt{\string{3,6\string}} &
+            Matches on a string if the preceding expression appears between
+            \texttt{<num1>} and \texttt{<num2>} times (inclusive). \\
+    \end{tcolorbox}%
+    \label{tabgrepopts}
+\end{table}
+
+\paragraph{Note} When using the characters \texttt{|, +, ?} with their regex
+meaning, they must be escaped with a backslash like this: \verb@\|, \+, \?@. If
+you want to use any of the ofter special characters as regular characters, i.e.
+to match a literal \texttt{.} you can use \verb@\.@
+
+\begin{exercisebox}{Finding email addresses}
+    Somewhere in the exercise files, there is an email address hidden in a text
+    file. Create a regular expression that matches email addresses that end in
+    .ch and find it!
+\end{exercisebox}
 
 \section{Remote machines}
 

@@ -37,6 +37,7 @@
 \definecolor{grey1}{HTML}{aaaaaa}
 \definecolor{grey2}{HTML}{efefef}
 \definecolor{lightblue}{HTML}{d9edfc}
+\definecolor{exclamred}{HTML}{db1515}
 
 \colorlet{lightyellow}{yellow!6!white}
 \colorlet{darkeryellow}{red!15!yellow!40!white}
