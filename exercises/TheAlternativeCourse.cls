@@ -12,6 +12,7 @@
 \RequirePackage[showseconds=false,showzone=false]{datetime2}
 \RequirePackage[table]{xcolor}
 \RequirePackage[most]{tcolorbox}
+\RequirePackage{hyperref}
 
 % helvetica font
 % \RequirePackage[scaled]{helvet}

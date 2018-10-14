@@ -9,7 +9,6 @@
 \date{}
 \author{}
 
-
 \begin{document}
 \maketitle
 
@@ -44,13 +43,15 @@ data.
 
 \section{Basics}
 
-To solve some of the exercises, you will need to download some files. These
-can be found in a Git repository. If you don't have \texttt{git} installed,
-now is the time to do so.
+To solve some of the exercises, you will need to download some files. Whenever
+you see an orange box like below, this means you have a task to solve.
 
 \begin{exercisebox}{Getting the repository}
-    Open a terminal and enter the following: \\
-    \texttt{git clone INSERT\_HERE}
+    Open a terminal and enter the following (all on one line): \\
+    \texttt{curl https://files.project21.ch/LinuxDays-Public/HS18-exercise.zip
+        -o exercise.zip} \\\\
+    Then extract the zip archive like this: \\
+    \texttt{unzip exercises.zip}
 \end{exercisebox}
 
 \subsection{Running a command}
@@ -790,5 +791,14 @@ instantly. Read \texttt{man 7 signal} if you want to know more about signals.
     (probably \texttt{1}). Check the output of the \texttt{jobs} command and
     confirm that the job is not displayed anymore.
 \end{exercisebox}
+
+\section{License}
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+International License. See also:
+\url{http://creativecommons.org/licenses/by-sa/4.0/}.
+
+\vspace{0cm}
+\includegraphics[width=3cm]{assets/CC-BY-SA_icon.pdf}
 
 \end{document}
