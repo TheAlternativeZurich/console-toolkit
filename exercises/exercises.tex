@@ -93,10 +93,10 @@ on how to use a command.
 \end{exercisebox}
 
 \subsection{Navigating directories}
-%
+
 You can navigate your file system in the terminal, just like you could with
 a graphical program. Below are the most important commands.
-%
+
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -117,19 +117,19 @@ a graphical program. Below are the most important commands.
     \end{tcolorbox}%
     \label{tab1}
 \end{table}
-%
+
 \begin{exercisebox}{Making yourself at home}
     Have a look around your home directory and try out the mentioned commands.
     You will most likely recognise the layout from your graphical file browser.
     Remember you can always return to your home directory by running
     \texttt{cd} without any arguments.
 \end{exercisebox}
-%
+
 \subsection{Modifying directories}
-%
+
 Just like in graphical programs, you can create and delete directories on the
 command line.
-%
+
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -153,18 +153,18 @@ command line.
     \end{tcolorbox}%
     \label{tab2}
 \end{table}
-%
+
 \begin{exercisebox}{Creating your first directory}
     Create a directory for the following exercises (you can call it
     \texttt{console-toolkit}).  Change into that directory and create a file
     call \texttt{notes}. Then move the exercise file directory you downloaded
     in task 2.1 into your newly created directory.
 \end{exercisebox}
-%
+
 \subsection{Viewing files}
 If you want to view the contents of a text file, you have the following
 options:
-%
+
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -182,7 +182,7 @@ options:
     \end{tcolorbox}%
     \label{tab3}
 \end{table}
-%
+
 \begin{exercisebox}{Log files}
     \texttt{tail} is often used to inspect errors log files. Use tail to find the
     last three lines of \texttt{dmesg\_log} (in the exercise files).
@@ -194,7 +194,6 @@ There are many little things that can make your life using the terminal a
 little bit easier.  Following is a table with the most important keyboard
 shortcuts you can use to speed up your workflow.
 
-%
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -274,10 +273,12 @@ Here are other commands that are frequently used for finding displaying about fi
         fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
         width=1.0\linewidth,
         tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
-        title={Commands for getting info about files}]
-	    \texttt{wc FILE} & Display line, word, and character count of a file \\
-	    \texttt{diff FILE1 FILE2} & Show differences between files\\
-	    \texttt{ln TARGET LINK\_NAME} & Create a link\\
+        title={Commands for getting information about files}]
+        \textbf{Command} & \textbf{Description} \\
+	    \texttt{wc \$file} & Display line, word, and character count of a file \\
+	    \texttt{diff \$file1 \$file2} & Show differences between files\\
+	    \texttt{ln \$target \$link\_name} & Create a link\\
+	    \texttt{du \$file} & Show file size ("disk usage") in blocks\\
     \end{tcolorbox}%
     \label{tab5}
 \end{table}
@@ -319,6 +320,113 @@ matches any \emph{single} character, or \texttt{\string{*.jpg,*.png\string}},
 which is a list that matches both \texttt{.jpg} and \texttt{.png} files. To
 learn more, you can have a look at \texttt{man 7 glob}.
 
+\begin{exercisebox}{Printing text, again}
+    Ouput all \texttt{.txt} files in \texttt{notes/} to the terminal in
+    a single command. The output will tell you if you did it correctly.
+\end{exercisebox}
+
+\begin{exercisebox}{Managing cat pictures}
+    Create a new directory called \texttt{cats}. Copy all cat pictures in
+    \texttt{pictures/} (in the exercise files) to your new \texttt{cats}
+    directory.
+\end{exercisebox}
+
+\subsection{Pipes}
+
+Pipes are useful to connect multiple commands together. One of the design
+principles of Unix was ``do one thing, and do it well''. This means, tools should
+be simple and powerful in their specific domain, but there should also be a
+mechanism to combine multiple programs in an easy way. This mechanism is the
+\emph{pipe}, the \texttt{|} symbol. It allows you to connect the output of one
+program to the input of another program.
+
+For example, we can combine \texttt{du} and \texttt{sort} to work together.
+\texttt{du} analyses the usage of disk space, and sort just sorts lines
+it is given. This pipe analyzes your home directory and tells you which
+directory uses the most space:
+
+\begin{cmdbox}
+    \texttt{du -sh * | sort -h}
+\end{cmdbox}
+
+Here the \texttt{*} globbing pattern stands for ``every file in the current
+directory''.
+
+\begin{exercisebox}
+    \texttt{wc} (word count) can be used to count the number of lines in a file
+    (\texttt{-l} flag). Use \texttt{cat} to output all files in the
+    \texttt{notes} directory (exercise files) at the same time and connect it
+    to \texttt{wc} to count the lines.
+\end{exercisebox}
+
+\subsection{Find}
+
+Looking for specific files on your system is a task that one has to do fairly
+regularly. Two commands that are among the absolute best in looking for files
+with certain properties are \texttt{find} and \texttt{grep}. In this section,
+we cover \texttt{find}.  As a rule of thumb, \texttt{find} is best used when
+you know that your file has certain metadata: Maybe you know approximately when
+you have created the file, when you last looked at it, how large it is etc. In
+contrast, \texttt{grep} is usually used when you want to look at \emph{the
+content} of a file.
+
+\texttt{find} works by essentially filtering all files through a chain of
+conditions, given by flags. Working with \texttt{find} is
+fairly straight forward and almost like verbally explaining what you are
+looking for.
+
+\begin{cmdbox}
+find -mtime -1 -size +100k
+\end{cmdbox}
+
+This searches for all files that have been modified (\texttt{-mtime}) less than
+one day ago (\texttt{-1}) and have size (\texttt{-size}) larger than 100
+Kilobytes (\texttt{+100k}). \texttt{find} has a lot of conditions where it
+makes sense to specify ``greater than'' or ``smaller than''. This is specified
+by prefixing the amount with a \texttt{+} or a \texttt{-}. This is why the
+condition ``larger than 100 Kilobytes'' is written as \texttt{-size +100k}.
+
+If we additionally knew that our file was smaller than one gigabyte, we would
+type:
+\begin{cmdbox}
+find -mtime -1 -size +100k -size -2G
+\end{cmdbox}
+
+It's necessary to use \texttt{-2G} here, since file sizes are rounded up.
+A file that has 800M will be rounded to 1G. The semantics of find use strictly
+smaller (\texttt{<}), therefore we have to compare to 2G.
+
+Here is an overview of options for \texttt{find} that are useful to know.
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Commands for getting info about files}]
+        \textbf{Flag} & \textbf{Description} \\
+        \texttt{-name} & Matches the name of a file. \\
+	    \texttt{-size} & Condition on the size of a file. \\
+        \texttt{-atime} & Condition on when file was last accessed. \\
+        \texttt{-mtime} & Condition on when file was last modified. \\
+        \texttt{-type} & Specifies type of file (directory, regular file \ldots). \\
+    \end{tcolorbox}%
+    \label{tab6}
+\end{table}
+
+\begin{exercisebox}{The largest cat}
+    Use \texttt{find} to find all cat pictures (\texttt{cat*}) with a size over
+    200 kilobytes in the exercise directory. There should be more than one!
+\end{exercisebox}
+
+\subsection{Grep and regular expressions}
+
+\includegraphics[width=\textwidth]{img/regex_golf.png}
+{\footnotesize xkcd 1313, https://xkcd.com/1313/}
+
 \section{Remote machines}
 
 This section will be about working with remote machines. You will
@@ -349,7 +457,7 @@ public key authentication in exercise 5.2 will automatically also apply to SCP.
         \texttt{scp file.txt user@hostname:file.txt} &
             Copy a file from current directory to remote host. \\
     \end{tcolorbox}%
-    \label{tab6}
+    \label{tab7}
 \end{table}
 
 \hintbox{%
@@ -381,7 +489,7 @@ clients that want to open an SSH session.
     it should no longer require a password.
 \end{exercisebox}
 
-	
+
 \section{Jobs \& Processes}
 
 Jobs are groups processes that are running in the current shell. Usually, a job only consists of one process but sometimes a job is a process \emph{pipeline} consisting of multiple jobs, such as \texttt{echo "Hello" | cat -}. Read the \texttt{JOB CONTROL} section of the \texttt{bash} manual if you want to study the details.
