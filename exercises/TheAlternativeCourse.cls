@@ -38,8 +38,11 @@
 \definecolor{grey2}{HTML}{efefef}
 \definecolor{lightblue}{HTML}{d9edfc}
 
+\colorlet{lightyellow}{yellow!6!white}
+\colorlet{darkeryellow}{red!15!yellow!40!white}
+
 \newtcolorbox[auto counter, number within=section]{exercisebox}[2][]{%
-    colback=yellow!6!white,
+    colback=lightyellow,
     fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
     colframe=ldorange,
     coltitle=black,
@@ -55,16 +58,28 @@
     coltitle=black,
     enhanced}
 
-\makeatletter
-\newtcolorbox[]{@hintbox}{%
-    colback=ldblue!10!white,
-    fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+\newtcolorbox{tcbhintbox}{%
     enhanced,
-    colframe=ldblue,
-    leftrule=3mm,
-    }
+    skin=bicolor,
+    segmentation at break=true,
+    boxrule=0.8pt,
+    left=3.5mm,
+    top=0.5mm,
+    bottom=0.5mm,
+    arc=1pt,
+    boxsep=2pt,
+    lefthand ratio=0.06,
+    sidebyside,
+    colframe=ldorange,
+    coltext=black,
+    colback=darkeryellow,
+    colbacklower=lightyellow,
+}
 
-\newenvironment{hintbox}
-{\begin{@hintbox}\textbf{Hint:}}
-{\end{@hintbox}}
-\makeatother
+\newcommand{\hintbox}[1]{%
+\begin{tcbhintbox}
+    \includegraphics[width=8mm]{img/light_bulb.pdf}%
+    \tcblower%
+    #1
+\end{tcbhintbox}}
+

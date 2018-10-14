@@ -7,9 +7,14 @@
 
 \title{Console Toolkit Exercises}
 \date{}
+\author{}
+
 
 \begin{document}
 \maketitle
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{12pt}
 
 \section{Introduction}
 
@@ -17,14 +22,13 @@ Welcome to this exercise session! This is a practical exercise on the Linux
 command line.  If you have any question about the exercises, feel free to ask
 the helpers for assistance.
 
-
 \subsection*{Difficulty}
 
 The exercises are designed in such a way that you will have to find solutions
 by reading the manuals and using search engines. You are expected to come up
 with appropriate solutions on your own, there will be no step-by-step guided
-exercises! \\\\
-%
+exercises!
+
 There will be quite simple exercises for complete beginners at the start,
 but there are also some much more difficult ones further into the exercise.
 Feel free to skip ahead!
@@ -42,8 +46,8 @@ data.
 
 To solve some of the exercises, you will need to download some files. These
 can be found in a Git repository. If you don't have \texttt{git} installed,
-now is the time to do so. \\
-%
+now is the time to do so.
+
 \begin{exercisebox}{Getting the repository}
     Open a terminal and enter the following: \\
     \texttt{git clone INSERT\_HERE}
@@ -55,8 +59,8 @@ To run a command, you just type it into the console and hit enter to run it.
 Most useful commands require some arguments. Arguments are given after the name of
 the command, separated by spaces. There is also so-called \emph{flags}, which
 set some options to alter the behaviour of a command. They are of the form
-\texttt{-x} (single letter form) or \texttt{--long-option} (long format). \\\\
-%
+\texttt{-x} (single letter form) or \texttt{--long-option} (long format).
+
 An example of a more involved command:
 
 \begin{cmdbox}
@@ -66,24 +70,24 @@ An example of a more involved command:
 \subsection{Getting help}
 
 \texttt{man} is a command you will need throughout the following
-exercises.  It stands for ''manual`` and shows you what almost any given
+exercises.  It stands for ``manual'' and shows you what almost any given
 command can do and which options are available for it.  Almost all commands
-provide such a ''manpage``, which is typically written by the developers
-themselves. \\
-%
+provide such a ``manpage'', which is typically written by the developers
+themselves.
+
 \begin{exercisebox}{The manual's manual}
     The \texttt{man} command itself has its own manpage. Type \texttt{man man}
     to access it, use the arrow keys to scroll, and press \keys{q} to exit.
     Have a look around, especially at the different section numbers.
     What is the section number for system calls?
 \end{exercisebox}
-%
+
 An alternative to using the man pages is to try and see if a command has a help
 option. This is usually displayed by appending the option \texttt{--help} after
 the name of the command, which will often display much shorter and concise
 instructions
-on how to use a command. \\
-%
+on how to use a command.
+
 \begin{exercisebox}{The help option}
     Look at the help output of \texttt{ls}. What is the flag to see hidden files?
 \end{exercisebox}
@@ -110,7 +114,7 @@ a graphical program. Below are the most important commands.
             working directory. \\
         \texttt{cd \$dir} & Change the current working directory to the given
             directory. \\
-    \end{tcolorbox}
+    \end{tcolorbox}%
     \label{tab1}
 \end{table}
 %
@@ -146,8 +150,8 @@ command line.
             (recursively with all its contents) to a target. \\
         \texttt{mv \$source \$target} & Move a file or directory.
             Also used to rename files/directories. \\
-    \end{tcolorbox}
-    \label{tab1}
+    \end{tcolorbox}%
+    \label{tab2}
 \end{table}
 %
 \begin{exercisebox}{Creating your first directory}
@@ -175,8 +179,8 @@ options:
         \texttt{head \$file} & Output the first couple of lines to the terminal. \\
         \texttt{tail \$file} & Output the last couple of lines to the terminal. \\
         \texttt{less \$file} & Browse a file in a visual viewer. \\
-    \end{tcolorbox}
-    \label{tab1}
+    \end{tcolorbox}%
+    \label{tab3}
 \end{table}
 %
 \begin{exercisebox}{Log files}
@@ -207,45 +211,68 @@ shortcuts you can use to speed up your workflow.
         \keys{\ctrl}+\keys{e} & Go to the end of the line. \\
         \keys{\ctrl}+\keys{c} & Terminate the currently runnig process. \\
         \keys{\ctrl}+\keys{d} & Quit the shell. \\
-    \end{tcolorbox}
-    \label{tab1}
+    \end{tcolorbox}%
+    \label{tab4}
 \end{table}
 
 \section{Files \& Permissions}
 
-This section introduces you to basic commands related to files. We will first look at a command that can be used for creating empty files.\\
+This section introduces you to basic commands related to files. We will first
+look at a command that can be used for creating empty files.
 
-The \texttt{touch} command is most frequently used for creating new, empty files. If you check the manual, you will see that it can also change certain file timestamps (access and modification times).\\
-%
+The \texttt{touch} command is most frequently used for creating new, empty
+files. If you check the manual, you will see that it can also change certain
+file timestamps (access and modification times).
+
 \begin{exercisebox}{The magic touch}
-	Switch to your home directory. Type \texttt{touch file}. A new file should have been created. Confirm that this is the case.
-\end{exercisebox}\\
+    Switch to your home directory. Type \texttt{touch file}. A new file should
+    have been created. Confirm that this is the case.
+\end{exercisebox}
 %
-We will now look at two commands to fiddle with permissions.\\
+We already saw \texttt{cat} in the previous section. It is time to introduce
+another important command to look at files: \texttt{less}. This command is
+great if you want to look at large bodies of text because, unlike \texttt{cat},
+it has a built-in scroll function. Once you are done looking at the file, you
+can quit with \keys{q}.
 
-\texttt{chown} stands for "change owner". It is used to change the owner of a given file. It can also change the group ownership.
-
-\begin{exercisebox}{Get off my property}
-	Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to change its ownership to the \texttt{root} user (you will probably need \texttt{sudo} for this). Try deleting it. Then change the ownership back to your own user.
+\begin{exercisebox}{Less is more}
+    There is also a \texttt{more} command. It is older than \texttt{less} and
+    thus less frequently used. Find a large file (or create onw) and look at it
+    with \texttt{less FILE}. How does it differ from \texttt{more}? Read the
+    manuals if you're confused.
 \end{exercisebox}
 
-A very similar command is \texttt{chmod}. \texttt{chmod} stands for "change file mode bits" and controls the following permissions on any given file:
+\subsection{Permissions}
+
+We will now look at two commands to fiddle with permissions.
+
+\texttt{chown} stands for ``change owner''. It is used to change the owner of a
+given file. It can also change the group ownership.
+
+\begin{exercisebox}{Get off my property}
+    Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to
+    change its ownership to the \texttt{root} user (you will probably need
+    \texttt{sudo} for this). Try deleting it. Then change the ownership back to
+    your own user.
+\end{exercisebox}
+%
+A very similar command is \texttt{chmod}. \texttt{chmod} stands for ``change
+file mode bits'' and controls the following permissions on any given file:
+
 \begin{itemize}
 	\item Read: Who can see the file data.
 	\item Write: Who can modify the file.
 	\item Execute: Who is allowed to run the file (like a program or a script)
 \end{itemize}
 
-\begin{hintbox}
-	Permissions can be read using \texttt{ls -l}.
-\end{hintbox}
+\hintbox{Permissions can be read using \texttt{ls -l}.}
 
 \begin{exercisebox}{Read, Write, Execute}
 	The read, write and execute permissions do different things, depending on whether they are set for directories or for files. Find out what they mean for files and directorues by playing around with the \texttt{chmod} command, readings its manual or searching on the Internet.
 \end{exercisebox}
-
-Here are other commands that are frequently used for finding displaying about files:\\
 %
+Here are other commands that are frequently used for finding displaying about files:
+
 \begin{table}[H]
     \centering
     \rowcolors{1}{lightblue}{white}
@@ -259,20 +286,99 @@ Here are other commands that are frequently used for finding displaying about fi
 	    \texttt{diff \$file1 \$file2} & Show differences between files\\
 	    \texttt{ln \$target \$link\_name} & Create a link\\
 	    \texttt{du \$file} & Show file size ("disk usage") in blocks\\
-    \end{tcolorbox}
-    \label{tab1}
+    \end{tcolorbox}%
+    \label{tab5}
 \end{table}
+%
+In the next exercise we are going to read some text from the standard input (also called \texttt{stdin}). Reading from \texttt{stdin} means you can just type text into the console. When you are done, hit \keys{Enter} to enter a newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file character in Unix-like systems. It signals to the command that it the input has finished. You can even use this keyshortcut to close your terminal.
 
-\begin{exercisebox}{wc reading session}
-	Sometimes you just want to know the length of some text you copy-pasted from the Internet. Read the manual of \texttt{wc} to find out how you can read from standard input.
+\begin{exercisebox}{Counting words}
+	Sometimes you just want to know the length of some text you copy-pasted from the Internet. Read the manual of \texttt{wc} to find out how you can read from standard input. Then use that command to count the length of some arbitrary text you want to paste into the console.
 \end{exercisebox}
-\begin{hintbox}
-	Reading from standard input means you can just type text into the console. When you are done, hit \keys{Enter} to enter a newline and then hit \keys{\ctrl}+\keys{d}. This is the universal end-of-file character in Unix-like systems. It signals to the command that it should close its input. You can even use it to close your terminal.
-\end{hintbox}
+
+\hintbox{Copying and pasting in the console is done with \keys{\ctrl}+\keys{\shift}+\keys{c} and \keys{\ctrl}+\keys{\shift}+\keys{v}.}
 
 \begin{exercisebox}{Hey! Listen!}
 	Read the \texttt{ln} manual to find out about symbolic links. Symbolic links are like shortcuts in Windows and OS X and are often more useful than hard links (their counterpart). Create a link from your home directory to a directory you use frequently.
 \end{exercisebox}
+
+\section{Leveraging the command line}
+
+\subsection{Globbing (Wildcards)}
+
+Globbing is a useful tool to work with files that share a pattern. For example,
+to refer to all \texttt{jpg} images in a directory, you can use \texttt{*.jpg}.
+The \texttt{*} means `any number of any characters', so this pattern will give
+you all files that end with \texttt{.jpg}. Similarly, \texttt{dir/*} will give
+you \emph{all} files in \texttt{dir}, \emph{except} hidden files.
+
+There are a few more useful patterns, like \texttt{?} (question mark) which
+matches any \emph{single} character, or \texttt{\string{*.jpg,*.png\string}},
+which is a list that matches both \texttt{.jpg} and \texttt{.png} files. To
+learn more, you can have a look at \texttt{man 7 glob}.
+
+\section{Remote machines}
+
+This section will be about working with remote machines. You will
+connect to one and move files from and to it. Additionally, you will set up
+your SSH so you can log in without entering a password.
+
+\texttt{ssh} (secure shell) is an extremely useful tool, as it allows you to
+manage servers, connecting to your home computer from a laptop, running
+computations on super computers, and even using graphical applications that are
+installed on a different computer. \texttt{scp} (secure copy) works just like
+\texttt{cp}, but allows you to copy files to and from remote machines.
+\texttt{scp} is based on the SSH protocol, so it works similiarly and the
+public key authentication in exercise 5.2 will automatically also apply to SCP.
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Remote access tools}]
+        \texttt{ssh user@hostname} &
+            Open an SSH session with a specific user on a host. \\
+        \texttt{scp user@hostname:file.txt .} &
+            Copy a file from remote machine to the current directory. \\
+        \texttt{scp file.txt user@hostname:file.txt} &
+            Copy a file from current directory to remote host. \\
+    \end{tcolorbox}%
+    \label{tab6}
+\end{table}
+
+\hintbox{%
+If you don't have an ETH account, use\\
+\texttt{hackingsession@pterodactyl.vsos.ethz.ch} with password\\
+\texttt{BoredHacker} for the following exercises instead.}
+
+\begin{exercisebox}{Establishing an SSH connection}
+    Use SSH to connect to the Euler supercomputer at
+    \texttt{nethz-login@euler.ethz.ch}, where \texttt{nethz-login} is your
+    \emph{nethz} account name. You can login using your regular credentials.
+\end{exercisebox}
+%
+It is inconvenient that you have to enter your password every time you want to
+log in. You can set up SSH in a way where you \emph{don't} have to provide your
+password!  This is done with public key cryptography. Basically, you generate a
+public key and a private key.  The private key you keep safe and only for
+yourself. The public key you can distribute to anyone.  Now you can
+authenticate yourself for anyone that has your public key: You can create a
+signature with your private key, that can be verified using the public key.
+However, only the owner of the private key can create the signature that is
+verifiable by the public key! This can be used by an SSH server to authenticate
+clients that want to open an SSH session.
+
+\begin{exercisebox}{Generating your key}
+    Generate your private/public key pair using \texttt{ssh-keygen}.
+    Then copy your generated public key (\texttt{.ssh/id\_rsa.pub}) to
+    \texttt{.ssh/authorized\_keys} on the server. Try logging in with SSH now,
+    it should no longer require a password.
+\end{exercisebox}
+
 	
 \section{Jobs \& Processes}
 
@@ -281,6 +387,7 @@ Jobs are groups processes that are running in the current shell. Usually, a job 
 Knowing how to control jobs is essential if you want to be able to simultaneously run multiple processes from the same shell.
 
 \subsection{Job control}
+
 Jobs can be put into background, started in background, brought to foreground and killed. We say a job is running in the background when it is currently running but not blocking the shell. In other words, when a job is running in the background, you can still use your shell normally (although the job might produce output that will get displayed on your terminal which can be quite annoying).
 
 \begin{table}[H]
@@ -297,11 +404,10 @@ Jobs can be put into background, started in background, brought to foreground an
 	    \texttt{fg} & Bring a job into the foreground\\
 	    \texttt{bg} & Bring a job into the background\\
     \end{tcolorbox}
-    \label{tab1}
+    \label{tab7}
 \end{table}
-
+%
 Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a job in the foreground and \keys{\ctrl}+\keys{z} to suspend a job in the foreground. Suspended jobs are paused until they are resumed with either \texttt{fg} or \texttt{bg}. Note that processes can choose to overwrite these shortcuts so they are not guaranteed to work. If they don't work, we can always use more drastic measures...
-
 
 \begin{table}[H]
     \centering
@@ -317,13 +423,12 @@ Additionally, you can \emph{usually} use \keys{\ctrl}+\keys{c} to terminate a jo
 	    \texttt{kill \%N} & Kill job, where N is the number of the job as listed in \texttt{jobs}. Processes may \emph{still} ignore this.\\
 	    \texttt{kill -9 \%N} & Kill job with number N for sure.\\
     \end{tcolorbox}
-    \label{tab1}
+    \label{tab8}
 \end{table}
 
 \subsection{Processes}
 
 Processes are system-wide. Each process has a unique process ID, also called PID for short. You can think of processes as "separate units of computing". For example, an \texttt{echo} command spawns a new process that is separated from the shell process that you are in (which is typically \texttt{bash}).
-
 
 \begin{table}[H]
     \centering
@@ -342,15 +447,14 @@ Processes are system-wide. Each process has a unique process ID, also called PID
 	    \texttt{pkill -9 \texttt{pattern}} & Similar to \texttt{kill -9}\\
 	    \texttt{ps} & Powerful utility to display a lot of information about specific processes\\
     \end{tcolorbox}
-    \label{tab1}
+    \label{tab9}
 \end{table}
 
-\begin{hintbox}
-	\texttt{kill} and \texttt{pkill} actually send so-called signals to processes. There are many signals that all do different things. When you call \texttt{kill PID}, the signal \texttt{15} is sent to the process \texttt{PID}. This signal is called the \texttt{SIGTERM} signal and is used to \emph{ask} a process to terminate. When we write \texttt{kill -9 PID}, we are actually sending the signal \texttt{9} which is also known as \texttt{SIGKILL} and kills a process instantly. Read \texttt{man 7 signal} if you want to know more about signals.
-\end{hintbox}
+\texttt{kill} and \texttt{pkill} actually send so-called signals to processes. There are many signals that all do different things. When you call \texttt{kill PID}, the signal \texttt{15} is sent to the process \texttt{PID}. This signal is called the \texttt{SIGTERM} signal and is used to \emph{ask} a process to terminate. When we write \texttt{kill -9 PID}, we are actually sending the signal \texttt{9} which is also known as \texttt{SIGKILL} and kills a process instantly. Read \texttt{man 7 signal} if you want to know more about signals.
+
 
 \begin{exercisebox}{Killed in their sleep}
-	Start a new process by typing \texttt{sleep 1000} in your shell. Open another shell. Use \texttt{top}, \texttt{htop} or \texttt{ps} to figure out the PID of the \texttt{sleep} process. Kill it.
+	Startasd a new process by typing \texttt{sleep 1000} in your shell. Open another shell. Use \texttt{top}, \texttt{htop} or \texttt{ps} to figure out the PID of the \texttt{sleep} process. Kill it.
 \end{exercisebox}
 
 \begin{exercisebox}{A job for kill}
