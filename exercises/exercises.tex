@@ -7,9 +7,14 @@
 
 \title{Console Toolkit Exercises}
 \date{}
+\author{}
+
 
 \begin{document}
 \maketitle
+
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{12pt}
 
 \section{Introduction}
 
@@ -17,14 +22,13 @@ Welcome to this exercise session! This is a practical exercise on the Linux
 command line.  If you have any question about the exercises, feel free to ask
 the helpers for assistance.
 
-
 \subsection*{Difficulty}
 
 The exercises are designed in such a way that you will have to find solutions
 by reading the manuals and using search engines. You are expected to come up
 with appropriate solutions on your own, there will be no step-by-step guided
-exercises! \\\\
-%
+exercises!
+
 There will be quite simple exercises for complete beginners at the start,
 but there are also some much more difficult ones further into the exercise.
 Feel free to skip ahead!
@@ -42,8 +46,8 @@ data.
 
 To solve some of the exercises, you will need to download some files. These
 can be found in a Git repository. If you don't have \texttt{git} installed,
-now is the time to do so. \\
-%
+now is the time to do so.
+
 \begin{exercisebox}{Getting the repository}
     Open a terminal and enter the following: \\
     \texttt{git clone INSERT\_HERE}
@@ -55,8 +59,8 @@ To run a command, you just type it into the console and hit enter to run it.
 Most useful commands require some arguments. Arguments are given after the name of
 the command, separated by spaces. There is also so-called \emph{flags}, which
 set some options to alter the behaviour of a command. They are of the form
-\texttt{-x} (single letter form) or \texttt{--long-option} (long format). \\\\
-%
+\texttt{-x} (single letter form) or \texttt{--long-option} (long format).
+
 An example of a more involved command:
 
 \begin{cmdbox}
@@ -66,24 +70,24 @@ An example of a more involved command:
 \subsection{Getting help}
 
 \texttt{man} is a command you will need throughout the following
-exercises.  It stands for ''manual`` and shows you what almost any given
+exercises.  It stands for ``manual'' and shows you what almost any given
 command can do and which options are available for it.  Almost all commands
-provide such a ''manpage``, which is typically written by the developers
-themselves. \\
-%
+provide such a ``manpage'', which is typically written by the developers
+themselves.
+
 \begin{exercisebox}{The manual's manual}
     The \texttt{man} command itself has its own manpage. Type \texttt{man man}
     to access it, use the arrow keys to scroll, and press \keys{q} to exit.
     Have a look around, especially at the different section numbers.
     What is the section number for system calls?
 \end{exercisebox}
-%
+
 An alternative to using the man pages is to try and see if a command has a help
 option. This is usually displayed by appending the option \texttt{--help} after
 the name of the command, which will often display much shorter and concise
 instructions
-on how to use a command. \\
-%
+on how to use a command.
+
 \begin{exercisebox}{The help option}
     Look at the help output of \texttt{ls}. What is the flag to see hidden files?
 \end{exercisebox}
@@ -110,7 +114,7 @@ a graphical program. Below are the most important commands.
             working directory. \\
         \texttt{cd \$dir} & Change the current working directory to the given
             directory. \\
-    \end{tcolorbox}
+    \end{tcolorbox}%
     \label{tab1}
 \end{table}
 %
@@ -146,7 +150,7 @@ command line.
             (recursively with all its contents) to a target. \\
         \texttt{mv \$source \$target} & Move a file or directory.
             Also used to rename files/directories. \\
-    \end{tcolorbox}
+    \end{tcolorbox}%
     \label{tab2}
 \end{table}
 %
@@ -176,7 +180,7 @@ options:
         \texttt{tail \$file} & Output the last couple of lines to the terminal. \\
         \texttt{less \$file} & Browse a file in a visual viewer. \\
         \texttt{touch \$file} & Create a new file when it doesn't exist yet. \\
-    \end{tcolorbox}
+    \end{tcolorbox}%
     \label{tab3}
 \end{table}
 %
@@ -208,37 +212,54 @@ shortcuts you can use to speed up your workflow.
         \keys{\ctrl}+\keys{e} & Go to the end of the line. \\
         \keys{\ctrl}+\keys{c} & Terminate the currently runnig process. \\
         \keys{\ctrl}+\keys{d} & Quit the shell. \\
-    \end{tcolorbox}
-    \label{tab1}
+    \end{tcolorbox}%
+    \label{tab4}
 \end{table}
 
 \section{Files}
 
-This section introduces you to basic commands related to files. We will first look at a command that can be used for creating empty files.\\
+This section introduces you to basic commands related to files. We will first
+look at a command that can be used for creating empty files.
 
-The \texttt{touch} command is most frequently used for creating new, empty files. If you check the manual, you will see that it can also change certain file timestamps (access and modification times).\\
-%
+The \texttt{touch} command is most frequently used for creating new, empty
+files. If you check the manual, you will see that it can also change certain
+file timestamps (access and modification times).
+
 \begin{exercisebox}{The magic touch}
-	Switch to your home directory. Type \texttt{touch file}. A new file should have been created. Confirm that this is the case.
-\end{exercisebox}\\
-%
-We already saw \texttt{cat} in the previous section. It is time to introduce another important command to look at files: \texttt{less}. This command is great if you want to look at large bodies of text because, unlike \texttt{cat}, it has a built-in scroll function. Once you are done looking at the file, you can quit with \keys{q}.\\
-%
+    Switch to your home directory. Type \texttt{touch file}. A new file should
+    have been created. Confirm that this is the case.
+\end{exercisebox}
+
+We already saw \texttt{cat} in the previous section. It is time to introduce
+another important command to look at files: \texttt{less}. This command is
+great if you want to look at large bodies of text because, unlike \texttt{cat},
+it has a built-in scroll function. Once you are done looking at the file, you
+can quit with \keys{q}.
+
 \begin{exercisebox}{Less is more}
-	There is also a \texttt{more} command. It is older than \texttt{less} and thus less frequently used. Find a large file (or create onw) and look at it with \texttt{less FILE}. How does it differ from \texttt{more}? Read the manuals if you're confused.
+    There is also a \texttt{more} command. It is older than \texttt{less} and
+    thus less frequently used. Find a large file (or create onw) and look at it
+    with \texttt{less FILE}. How does it differ from \texttt{more}? Read the
+    manuals if you're confused.
 \end{exercisebox}
 
 \subsection{Permissions}
 
-We will now look at two commands to fiddle with permissions.\\
+We will now look at two commands to fiddle with permissions.
 
-\texttt{chown} stands for "change owner". It is used to change the owner of a given file. It can also change the group ownership.
+\texttt{chown} stands for ``change owner''. It is used to change the owner of a
+given file. It can also change the group ownership.
 
 \begin{exercisebox}{Get off my property}
-	Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to change its ownership to the \texttt{root} user (you will probably need \texttt{sudo} for this). Try deleting it. Then change the ownership back to your own user.
+    Create a new, empty file (hint: \texttt{touch}) and use \texttt{chown} to
+    change its ownership to the \texttt{root} user (you will probably need
+    \texttt{sudo} for this). Try deleting it. Then change the ownership back to
+    your own user.
 \end{exercisebox}
 
-A very similar command is \texttt{chmod}. \texttt{chmod} stands for "change file mode bits" and controls the following permissions on any given file:
+A very similar command is \texttt{chmod}. \texttt{chmod} stands for ``change
+file mode bits'' and controls the following permissions on any given file:
+
 \begin{itemize}
 	\item Read: Who can see the file data.
 	\item Write: Who can modify the file.
@@ -247,13 +268,79 @@ A very similar command is \texttt{chmod}. \texttt{chmod} stands for "change file
 
 \hintbox{Permissions can be read using \texttt{ls -l}.}
 
+\section{Leveraging the command line}
+
+\subsection{Globbing (Wildcards)} Globbing is a useful tool to work with files
+that share a pattern. For example, to refer to all \texttt{jpg} images in a
+directory, you can use \texttt{*.jpg}. The \texttt{*} means `any number of any
+characters', so this pattern will give you all files that end with
+\texttt{.jpg}. Similarly, \texttt{dir/*} will give you \emph{all} files in
+\texttt{dir}, \emph{except} hidden files.
+
+There are a few more useful patterns, like \texttt{?} (question mark) which
+matches any \emph{single} character, or \texttt{\string{*.jpg,*.png\string}},
+which is a list that matches both \texttt{.jpg} and \texttt{.png} files. To
+learn more, you can have a look at \texttt{man 7 glob}.
+
 \section{Remote machines}
 
-This section will be about working with remote machines (servers). You will
-connect to one and move files from and to it. \\
+This section will be about working with remote machines. You will
+connect to one and move files from and to it. Additionally, you will set up
+your SSH so you can log in without entering a password.
 
-%
-% pterodactyl@vsos.ethz.ch
-% hackinsession,BoredHacker
+\texttt{ssh} (secure shell) is an extremely useful tool, as it allows you to
+manage servers, connecting to your home computer from a laptop, running
+computations on super computers, and even using graphical applications that are
+installed on a different computer. \texttt{scp} (secure copy) works just like
+\texttt{cp}, but allows you to copy files to and from remote machines.
+\texttt{scp} is based on the SSH protocol, so it works similiarly and the
+public key authentication in exercise 5.2 will automatically also apply to SCP.
+
+\begin{table}[H]
+    \centering
+    \rowcolors{1}{lightblue}{white}
+    \begin{tcolorbox}[%
+        enhanced,
+        fuzzy shadow={1mm}{-1mm}{0mm}{0.1mm}{black!50!white},
+        width=1.0\linewidth,
+        tabularx={>{\centering\arraybackslash}l|>{\centering\arraybackslash}X},
+        title={Remote access tools}]
+        \texttt{ssh user@hostname} &
+            Open an SSH session with a specific user on a host. \\
+        \texttt{scp user@hostname:file.txt .} &
+            Copy a file from remote machine to the current directory. \\
+        \texttt{scp file.txt user@hostname:file.txt} &
+            Copy a file from current directory to remote host. \\
+    \end{tcolorbox}%
+    \label{tab5}
+\end{table}
+
+\hintbox{%
+If you don't have an ETH account, use \texttt{pterodactyl@vsos.ethz.ch}
+with password \texttt{BoredHacker} for the following exercises instead.}
+
+\begin{exercisebox}{Establishing an SSH connection}
+    Use SSH to connect to the Euler supercomputer at
+    \texttt{nethz-login@euler.ethz.ch}, where \texttt{nethz-login} is your
+    \emph{nethz} account name. You can login using your regular credentials.
+\end{exercisebox}
+
+It is inconvenient that you have to enter your password every time you want to
+log in. You can set up SSH in a way where you \emph{don't} have to provide your
+password!  This is done with public key cryptography. Basically, you generate a
+public key and a private key.  The private key you keep safe and only for
+yourself. The public key you can distribute to anyone.  Now you can
+authenticate yourself for anyone that has your public key: You can create a
+signature with your private key, that can be verified using the public key.
+However, only the owner of the private key can create the signature that is
+verifiable by the public key! This can be used by an SSH server to authenticate
+clients that want to open an SSH session.
+
+\begin{exercisebox}{Generating your key}
+    Generate your private/public key pair using \texttt{ssh-keygen}.
+    Then copy your generated public key (\texttt{.ssh/id\_rsa.pub}) to
+    \texttt{.ssh/authorized\_keys} on the server. Try logging in with SSH now,
+    it should no longer require a password.
+\end{exercisebox}
 
 \end{document}

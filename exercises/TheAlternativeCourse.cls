@@ -63,9 +63,9 @@
     skin=bicolor,
     segmentation at break=true,
     boxrule=0.8pt,
-    left=3mm,
-    top=-0.5mm,
-    bottom=-0.5mm,
+    left=3.5mm,
+    top=0.5mm,
+    bottom=0.5mm,
     arc=1pt,
     boxsep=2pt,
     lefthand ratio=0.06,
@@ -78,7 +78,7 @@
 
 \newcommand{\hintbox}[1]{%
 \begin{tcbhintbox}
-    \includegraphics[width=9mm]{img/light_bulb.pdf}%
+    \includegraphics[width=8mm]{img/light_bulb.pdf}%
     \tcblower%
     #1
 \end{tcbhintbox}}
