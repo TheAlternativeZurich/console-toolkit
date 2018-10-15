@@ -49,7 +49,7 @@ you see an orange box like below, this means you have a task to solve.
 \begin{exercisebox}{Getting the repository}
     Open a terminal and enter the following (all on one line): \\
     \texttt{curl https://files.project21.ch/LinuxDays-Public/HS18-exercise.zip
-        -o exercise.zip} \\\\
+        -o exercises.zip} \\\\
     Then extract the zip archive like this: \\
     \texttt{unzip exercises.zip}
 \end{exercisebox}
@@ -718,9 +718,9 @@ quite annoying).
         title={Controlling jobs}]
 		\texttt{\keys{\ctrl}+\keys{z}} & Suspend current job. Processes may ignore this.\\
 		\texttt{\keys{\ctrl}+\keys{c}} & Kill current job. Processes may ignore this.\\
-        \texttt{kill N} & Kill job, where N is its number as listed in
+        \texttt{kill \%N} & Kill job, where N is its number as listed in
         \texttt{jobs}.Processes may \emph{still} ignore this.\\
-	    \texttt{kill -9 N} & Kill job with number N for sure.\\
+	    \texttt{kill -9 \%N} & Kill job with number N for sure.\\
     \end{tcolorbox}
     \label{tab8}
 \end{table}
@@ -787,7 +787,7 @@ instantly. Read \texttt{man 7 signal} if you want to know more about signals.
 \begin{exercisebox}{A job for kill}
     \texttt{kill} also works on jobs. Start \texttt{sleep 1000} in the
     background (or start it in the foreground, suspend it, then bring it to the
-    background). Then type \texttt{kill N} where \texttt{N} is the job's number
+    background). Then type \texttt{kill \%N} where \texttt{N} is the job's number
     (probably \texttt{1}). Check the output of the \texttt{jobs} command and
     confirm that the job is not displayed anymore.
 \end{exercisebox}
