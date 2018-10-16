@@ -28,15 +28,15 @@
             \column{0.5\textwidth}
             \textbf{Part 1}
             \begin{itemize}
+                \item Getting used to the console
                 \item Navigating the file system
                 \item Modifiying files
                 \item Working with text files
-                \item Getting used to the console
+                \item{Users \& permissions}
             \end{itemize}
             \column{0.5\textwidth}
             \textbf{Part 2}
             \begin{itemize}
-                \item{Users \& permissions}
                 \item{Managing software}
                 \item{SSH}
                 \item{Git}
@@ -48,15 +48,15 @@
 
     \begin{frame}[t,fragile]{What is the console}
         \begin{columns}[T]
-            \column{0.4\textwidth}
+            \column{0.5\textwidth}
             \begin{itemize}
                 \item Keyboard-only interface to your computer
                 \item Related terms: \emph{console}, \emph{terminal},
                     \emph{shell}, \emph{bash}, \emph{command prompt},
                     \emph{command line interface}
             \end{itemize}
-            \column{0.6\textwidth}
-            \includegraphics[width=\columnwidth]{img/consoles.png}
+            \column{0.5\textwidth}
+            \includegraphics[width=\columnwidth]{img/matrix.png}
         \end{columns}
     \end{frame}
 
@@ -78,7 +78,11 @@
     \begin{frame}[t,fragile]{File system}
         \begin{columns}[T]
             \column{0.5\textwidth}
-            \includegraphics[width=\columnwidth]{img/dirtree.png}
+            \vspace{-0.6cm}
+            \begin{center}
+            \includegraphics[width=0.4\columnwidth]{img/fs.png}
+            {\tiny [1]}
+            \end{center}
             \column{0.5\textwidth}
             \begin{itemize}
                 \item File system organized as tree
@@ -404,7 +408,7 @@ cat pictures from the internet.
     \begin{frame}[t,fragile]{Editing files}
         \begin{itemize}
             \item Need a \emph{text editor}!
-            \item \emph{nano, vim, vis, (emacs)}
+            \item \emph{nano, vim, vis, emacs}
             \item Simple, intuitive, no learning required? \textrightarrow\:\texttt{nano}
             \item Powerful, efficient and extreme nerd cred? \textrightarrow\:\texttt{vim}
             \item Obscure, eccentric and even more powerful? \textrightarrow\:\texttt{emacs}
@@ -827,14 +831,16 @@ Hello World!
 			    \item Preview functionality
 		    \end{itemize}
 		    \column{0.5\textwidth}
-		    \includegraphics[width=1.0\columnwidth]{img/ranger.png}
+		    \includegraphics[width=1.0\columnwidth]{img/ranger1.png}
 	    \end{columns}
     \end{frame}
 
-    \begin{frame}[t, fragile]
-	    \frametitle{Ranger image preview}
-	    \includegraphics[width=0.7\columnwidth]{img/ranger_img_preview.png}
-    \end{frame}
+	\begin{frame}[t, fragile]
+		\frametitle{Ranger image preview}
+		\begin{center}
+			\includegraphics[width=0.9\textwidth]{img/ranger_img_preview.png}
+		\end{center}
+	\end{frame}
 
 
     \section{Managing software}
@@ -853,6 +859,7 @@ Hello World!
             \vspace{-1cm}
             \begin{center}
                 \includegraphics[width=0.7\columnwidth]{img/package-icon.pdf}
+                {\tiny [2]}
             \end{center}
         \end{columns}
     \end{frame}
@@ -1151,9 +1158,10 @@ Repeat passphrase:
     \section{Epilogue}
 
     \begin{frame}[t,fragile]{Sources}
+        \footnotesize
         \begin{itemize}
-            \item Img 1
-            \item Img 2
+            \item[1] \url{https://commons.wikimedia.org/wiki/File:Linux_Filesystem_Hierarchy_Standard.png}
+            \item[2] \url{https://en.wikipedia.org/wiki/File:Gnome-emblem-package.svg}
         \end{itemize}
     \end{frame}
 
